@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PharmaPlus Pakistan - Your Health Companion</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --primary: #1a6b4a;
+  --primary-light: #2d9e6f;
+  --primary-dark: #0f4530;
+  --secondary: #f0a500;
+  --accent: #e8f5ef;
+  --danger: #e53935;
+  --info: #1976d2;
+  --purple: #7b2d8b;
+  --bg: #f7faf8;
+  --card: #ffffff;
+  --text: #1a1a2e;
+  --text-muted: #5a6472;
+  --border: #e0ebe5;
+  --shadow: 0 4px 24px rgba(26,107,74,0.08);
+  --shadow-hover: 0 8px 32px rgba(26,107,74,0.16);
+  --radius: 14px;
+  --radius-sm: 8px;
+  font-family: 'DM Sans', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:'DM Sans',sans-serif}
+img{max-width:100%}
+
+/* ─── SCROLL ─── */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#f1f1f1}
+::-webkit-scrollbar-thumb{background:var(--primary-light);border-radius:3px}
+
+/* ─── TOP BAR ─── */
+.topbar{background:var(--primary-dark);color:#fff;padding:6px 0;font-size:12px}
+.topbar-inner{max-width:1320px;margin:auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.topbar a{color:#b2dfce;font-size:12px}
+.topbar a:hover{color:#fff}
+.lang-switch{display:flex;gap:6px}
+.lang-btn{background:rgba(255,255,255,0.15);border:none;color:#fff;padding:3px 10px;border-radius:20px;font-size:11px;cursor:pointer;transition:.2s}
+.lang-btn.active,.lang-btn:hover{background:var(--secondary);color:#1a1a2e}
+
+/* ─── HEADER ─── */
+header{background:#fff;position:sticky;top:0;z-index:999;box-shadow:0 2px 16px rgba(0,0,0,0.08)}
+.header-main{max-width:1320px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;min-width:170px}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px}
+.logo-text{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--primary-dark)}
+.logo-sub{font-size:10px;color:var(--text-muted);font-weight:400;display:block;margin-top:-4px}
+.search-bar{flex:1;display:flex;border:2px solid var(--primary);border-radius:50px;overflow:hidden;max-width:600px}
+.search-bar select{border:none;padding:0 14px;background:#f0f8f4;color:var(--text-muted);font-size:13px;outline:none;border-right:1px solid var(--border);cursor:pointer}
+.search-bar input{flex:1;border:none;padding:10px 16px;font-size:14px;outline:none;font-family:'DM Sans',sans-serif}
+.search-bar button{background:var(--primary);color:#fff;border:none;padding:0 22px;font-size:15px;transition:.2s}
+.search-bar button:hover{background:var(--primary-dark)}
+.header-actions{display:flex;align-items:center;gap:8px;margin-left:auto}
+.hdr-btn{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;color:var(--text-muted);padding:6px 10px;border-radius:10px;transition:.2s;font-size:11px;position:relative}
+.hdr-btn i{font-size:20px;color:var(--primary)}
+.hdr-btn:hover{background:var(--accent);color:var(--primary)}
+.badge{position:absolute;top:2px;right:6px;background:var(--danger);color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.btn-consult{background:var(--primary);color:#fff;border:none;padding:10px 18px;border-radius:50px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;transition:.2s}
+.btn-consult:hover{background:var(--primary-dark);transform:translateY(-1px)}
+
+/* ─── NAV ─── */
+nav{background:var(--primary);position:relative}
+.nav-inner{max-width:1320px;margin:auto;padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto}
+.nav-item{position:relative}
+.nav-link{display:flex;align-items:center;gap:6px;padding:13px 16px;color:rgba(255,255,255,0.88);font-size:13.5px;font-weight:500;white-space:nowrap;transition:.2s;border-bottom:3px solid transparent}
+.nav-link:hover,.nav-link.active{color:#fff;border-bottom-color:var(--secondary)}
+.nav-link i{font-size:14px}
+.dropdown{position:absolute;top:100%;left:0;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-hover);min-width:200px;z-index:500;opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s;border:1px solid var(--border)}
+.nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown a{display:flex;align-items:center;gap:8px;padding:10px 18px;color:var(--text);font-size:13px;transition:.15s}
+.dropdown a:hover{background:var(--accent);color:var(--primary)}
+.dropdown a i{color:var(--primary);width:16px}
+.dropdown-mega{min-width:480px;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+
+/* ─── PAGE SECTIONS ─── */
+.page{display:none}
+.page.active{display:block}
+
+/* ─── HERO ─── */
+.hero{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 60%,#2d8f62 100%);padding:60px 20px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-inner{max-width:1320px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);color:#b2dfce;padding:5px 14px;border-radius:50px;font-size:12px;margin-bottom:16px}
+.hero h1{font-family:'Playfair Display',serif;font-size:46px;color:#fff;line-height:1.2;margin-bottom:14px}
+.hero h1 span{color:var(--secondary)}
+.hero p{color:rgba(255,255,255,0.8);font-size:16px;line-height:1.7;margin-bottom:28px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--secondary);color:#1a1a2e;padding:13px 28px;border-radius:50px;font-weight:700;font-size:15px;border:none;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.btn-primary:hover{background:#ffb800;transform:translateY(-2px);box-shadow:0 6px 20px rgba(240,165,0,0.35)}
+.btn-outline-white{background:transparent;color:#fff;padding:13px 28px;border-radius:50px;font-weight:600;font-size:15px;border:2px solid rgba(255,255,255,0.5);display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.btn-outline-white:hover{background:rgba(255,255,255,0.1);border-color:#fff}
+.hero-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hero-card{background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);border-radius:var(--radius);padding:20px;color:#fff;cursor:pointer;transition:.2s}
+.hero-card:hover{background:rgba(255,255,255,0.2);transform:translateY(-3px)}
+.hero-card-icon{width:44px;height:44px;background:rgba(255,255,255,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:10px}
+.hero-card h4{font-size:15px;font-weight:600;margin-bottom:4px}
+.hero-card p{font-size:12px;opacity:.75}
+
+/* ─── STATS BAR ─── */
+.stats-bar{background:#fff;border-bottom:1px solid var(--border)}
+.stats-inner{max-width:1320px;margin:auto;padding:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat{text-align:center;padding:16px;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-num{font-size:28px;font-weight:700;color:var(--primary);font-family:'Playfair Display',serif}
+.stat-label{font-size:13px;color:var(--text-muted);margin-top:2px}
+
+/* ─── FEATURE STRIP ─── */
+.feature-strip{max-width:1320px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.feature-card{background:#fff;border-radius:var(--radius);padding:22px 16px;text-align:center;border:1px solid var(--border);transition:.2s;cursor:pointer}
+.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--primary)}
+.feature-icon{width:56px;height:56px;margin:0 auto 12px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.feature-card h4{font-size:14px;font-weight:600;margin-bottom:4px}
+.feature-card p{font-size:12px;color:var(--text-muted)}
+.f-green{background:#e8f5ef;color:var(--primary)}
+.f-blue{background:#e3f0fd;color:var(--info)}
+.f-amber{background:#fff8e1;color:#f57c00}
+.f-purple{background:#f3e5f5;color:var(--purple)}
+.f-red{background:#ffebee;color:var(--danger)}
+
+/* ─── SECTION ─── */
+.section{max-width:1320px;margin:0 auto;padding:0 20px 48px}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.section-title{font-family:'Playfair Display',serif;font-size:26px;color:var(--primary-dark)}
+.section-title span{color:var(--primary)}
+.see-all{color:var(--primary);font-size:13px;font-weight:600;display:flex;align-items:center;gap:4px}
+.see-all:hover{color:var(--primary-dark)}
+
+/* ─── PRODUCT GRID ─── */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+.product-card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;transition:.2s;position:relative}
+.product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.product-img{height:160px;background:linear-gradient(135deg,#f0f8f4,#e8f5ef);display:flex;align-items:center;justify-content:center;font-size:50px;position:relative}
+.product-badge{position:absolute;top:10px;left:10px;background:var(--danger);color:#fff;font-size:10px;padding:3px 8px;border-radius:20px;font-weight:700}
+.product-badge.new{background:var(--primary)}
+.product-badge.rx{background:var(--purple)}
+.product-info{padding:14px}
+.product-brand{font-size:11px;color:var(--primary);font-weight:600;text-transform:uppercase;margin-bottom:4px}
+.product-name{font-size:14px;font-weight:600;margin-bottom:6px;line-height:1.4}
+.product-generic{font-size:11px;color:var(--text-muted);margin-bottom:10px}
+.product-price{display:flex;align-items:center;gap:8px}
+.price-current{font-size:18px;font-weight:700;color:var(--primary-dark)}
+.price-old{font-size:13px;color:var(--text-muted);text-decoration:line-through}
+.product-actions{display:flex;gap:6px;margin-top:12px}
+.btn-add{flex:1;background:var(--primary);color:#fff;border:none;padding:9px;border-radius:50px;font-size:13px;font-weight:600;transition:.2s}
+.btn-add:hover{background:var(--primary-dark)}
+.btn-wish{width:36px;height:36px;background:var(--accent);color:var(--primary);border:none;border-radius:50%;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.btn-wish:hover{background:var(--primary);color:#fff}
+
+/* ─── PRICE COMPARE ─── */
+.compare-section{background:#fff;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;margin-bottom:32px}
+.compare-header{background:var(--primary);color:#fff;padding:18px 24px;display:flex;align-items:center;gap:12px}
+.compare-header h3{font-size:18px;font-weight:600}
+.compare-table{width:100%;border-collapse:collapse}
+.compare-table th{background:var(--accent);padding:12px 16px;text-align:left;font-size:13px;color:var(--primary-dark);font-weight:600;border-bottom:2px solid var(--border)}
+.compare-table td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:middle}
+.compare-table tr:hover td{background:#f9fffe}
+.pharmacy-name{display:flex;align-items:center;gap:10px}
+.pharm-logo{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff}
+.price-tag{font-weight:700;font-size:16px;color:var(--primary-dark)}
+.price-best{color:var(--primary);font-weight:700}
+.stock-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.in-stock{background:#e8f5ef;color:var(--primary)}
+.out-stock{background:#ffebee;color:var(--danger)}
+.btn-order-sm{background:var(--primary);color:#fff;border:none;padding:7px 16px;border-radius:50px;font-size:12px;font-weight:600;transition:.2s}
+.btn-order-sm:hover{background:var(--primary-dark)}
+.saving-badge{background:var(--secondary);color:#1a1a2e;font-size:11px;padding:2px 8px;border-radius:20px;font-weight:700}
+
+/* ─── PRESCRIPTION SCANNER ─── */
+.rx-scanner{background:linear-gradient(135deg,#e8f5ef,#f0f8ff);border:2px dashed var(--primary);border-radius:var(--radius);padding:40px;text-align:center;cursor:pointer;transition:.2s;position:relative}
+.rx-scanner:hover{border-color:var(--primary-dark);background:linear-gradient(135deg,#d4ede3,#e3f0fd)}
+.rx-scanner h3{font-size:20px;font-weight:600;color:var(--primary-dark);margin:16px 0 8px}
+.rx-scanner p{color:var(--text-muted);font-size:14px}
+.scan-icon{width:72px;height:72px;background:var(--primary);border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto;color:#fff;font-size:32px}
+.rx-result{background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:24px;margin-top:20px;display:none}
+.rx-result.show{display:block}
+.rx-med-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
+.rx-med-item:last-child{border-bottom:none}
+
+/* ─── CONSULTATION ─── */
+.consult-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.consult-card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:28px;text-align:center;cursor:pointer;transition:.2s}
+.consult-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--primary)}
+.consult-icon{width:70px;height:70px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 16px}
+.consult-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.consult-card p{font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:20px}
+.pharmacist-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:24px}
+.pharmacist-card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:20px;text-align:center;transition:.2s}
+.pharmacist-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.pharma-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff}
+.online-dot{display:inline-block;width:10px;height:10px;background:#2ecc71;border-radius:50%;margin-right:4px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.rating{color:#f0a500;font-size:12px}
+
+/* ─── VIDEO CALL ─── */
+.video-ui{background:#1a1a2e;border-radius:var(--radius);overflow:hidden;position:relative;min-height:400px;display:flex;align-items:center;justify-content:center}
+.video-placeholder{text-align:center;color:#fff}
+.video-placeholder i{font-size:80px;color:rgba(255,255,255,0.2);margin-bottom:20px}
+.video-controls{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:20px;display:flex;justify-content:center;gap:12px}
+.vcBtn{width:48px;height:48px;border-radius:50%;border:none;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s}
+.vcBtn:hover{transform:scale(1.1)}
+
+/* ─── CHAT ─── */
+.chat-window{background:#fff;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;height:500px;display:flex;flex-direction:column}
+.chat-header{background:var(--primary);color:#fff;padding:16px 20px;display:flex;align-items:center;gap:12px}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:#f7faf8}
+.msg{max-width:72%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.5}
+.msg.user{background:var(--primary);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.msg.bot{background:#fff;color:var(--text);align-self:flex-start;border-bottom-left-radius:4px;border:1px solid var(--border)}
+.chat-input{display:flex;padding:12px;border-top:1px solid var(--border);gap:8px}
+.chat-input input{flex:1;border:1px solid var(--border);border-radius:50px;padding:10px 16px;outline:none;font-size:14px;font-family:'DM Sans',sans-serif}
+.chat-input input:focus{border-color:var(--primary)}
+.chat-send{background:var(--primary);color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:15px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.chat-send:hover{background:var(--primary-dark)}
+
+/* ─── MAP ─── */
+.map-container{background:#e8f5ef;border-radius:var(--radius);overflow:hidden;position:relative;height:380px}
+.map-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:linear-gradient(135deg,#e8f5ef,#e3f0fd)}
+.map-placeholder i{font-size:60px;color:var(--primary-light)}
+.pharmacy-markers{position:absolute;inset:0;pointer-events:none}
+.marker{position:absolute;display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:all;cursor:pointer;transition:.2s}
+.marker:hover .marker-popup{display:block}
+.marker-pin{width:36px;height:36px;background:var(--primary);border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.2);border:3px solid #fff}
+.marker-pin i{transform:rotate(45deg);color:#fff;font-size:14px}
+.marker-popup{display:none;position:absolute;bottom:50px;left:50%;transform:translateX(-50%);background:#fff;border-radius:10px;padding:12px 16px;box-shadow:0 4px 20px rgba(0,0,0,0.15);min-width:160px;text-align:center;z-index:10;border:1px solid var(--border)}
+.marker-popup h5{font-size:13px;font-weight:700;color:var(--primary-dark);margin-bottom:4px}
+.marker-popup p{font-size:11px;color:var(--text-muted)}
+.nearby-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:24px}
+.nearby-card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:18px;display:flex;gap:14px;align-items:flex-start;transition:.2s}
+.nearby-card:hover{border-color:var(--primary);box-shadow:var(--shadow)}
+.nearby-icon{width:48px;height:48px;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:20px;flex-shrink:0}
+.nearby-info h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.nearby-info p{font-size:12px;color:var(--text-muted);margin-bottom:6px}
+.nearby-tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11px;padding:2px 8px;border-radius:20px;background:var(--accent);color:var(--primary);font-weight:600}
+.tag.open{background:#e8f5ef;color:var(--primary)}
+.tag.closed{background:#ffebee;color:var(--danger)}
+
+/* ─── LAB TESTS ─── */
+.lab-cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-bottom:32px}
+.lab-cat{background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:20px;text-align:center;cursor:pointer;transition:.2s}
+.lab-cat:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--primary)}
+.lab-cat-icon{font-size:32px;margin-bottom:10px}
+.lab-cat h4{font-size:13px;font-weight:700;margin-bottom:4px}
+.lab-cat p{font-size:11px;color:var(--text-muted)}
+.lab-tests-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.lab-test-card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:20px;transition:.2s}
+.lab-test-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.lab-test-card h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.lab-test-card p{font-size:13px;color:var(--text-muted);margin-bottom:12px;line-height:1.5}
+.lab-details{display:flex;gap:16px;font-size:12px;color:var(--text-muted);margin-bottom:16px}
+.lab-details span{display:flex;align-items:center;gap:4px}
+.lab-compare-btn{width:100%;background:var(--accent);color:var(--primary);border:none;padding:10px;border-radius:50px;font-size:13px;font-weight:600;transition:.2s}
+.lab-compare-btn:hover{background:var(--primary);color:#fff}
+
+/* ─── ORDER TRACKING ─── */
+.track-form{background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:32px;margin-bottom:32px}
+.track-form h3{font-size:20px;font-weight:700;color:var(--primary-dark);margin-bottom:20px}
+.track-input-group{display:flex;gap:12px}
+.track-input-group input{flex:1;border:2px solid var(--border);border-radius:50px;padding:12px 20px;font-size:15px;outline:none;font-family:'DM Sans',sans-serif;transition:.2s}
+.track-input-group input:focus{border-color:var(--primary)}
+.btn-track{background:var(--primary);color:#fff;border:none;padding:12px 28px;border-radius:50px;font-size:14px;font-weight:700;transition:.2s}
+.btn-track:hover{background:var(--primary-dark)}
+.order-timeline{display:none}
+.order-timeline.show{display:block}
+.timeline{display:flex;gap:0;position:relative;margin:32px 0}
+.timeline::before{content:'';position:absolute;top:24px;left:24px;right:24px;height:3px;background:var(--border);z-index:0}
+.timeline-step{flex:1;display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;z-index:1}
+.tl-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;border:3px solid var(--border);background:#fff;transition:.3s}
+.tl-icon.done{background:var(--primary);border-color:var(--primary);color:#fff}
+.tl-icon.active{background:#fff;border-color:var(--primary);color:var(--primary);animation:pulse 1.5s infinite}
+.tl-label{font-size:12px;font-weight:600;color:var(--text-muted);text-align:center}
+.tl-label.done{color:var(--primary)}
+
+/* ─── DISEASE SHOP ─── */
+.disease-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;margin-bottom:40px}
+.disease-card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:16px;text-align:center;cursor:pointer;transition:.2s}
+.disease-card:hover,.disease-card.selected{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--primary);background:var(--accent)}
+.disease-emoji{font-size:28px;margin-bottom:8px}
+.disease-card h4{font-size:13px;font-weight:700}
+.disease-card p{font-size:11px;color:var(--text-muted)}
+.subcats{display:none;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.subcats.show{display:flex}
+.subcat-btn{background:#fff;border:1px solid var(--border);padding:7px 16px;border-radius:50px;font-size:13px;cursor:pointer;transition:.2s}
+.subcat-btn.active,.subcat-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* ─── CATEGORIES SIDEBAR ─── */
+.cat-layout{display:grid;grid-template-columns:240px 1fr;gap:24px;align-items:start}
+.cat-sidebar{background:#fff;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;position:sticky;top:80px}
+.cat-sidebar-title{background:var(--primary);color:#fff;padding:16px 20px;font-size:15px;font-weight:700}
+.cat-sidebar a{display:flex;align-items:center;gap:10px;padding:12px 20px;font-size:14px;color:var(--text);border-bottom:1px solid var(--border);transition:.15s}
+.cat-sidebar a:hover,.cat-sidebar a.active{background:var(--accent);color:var(--primary);padding-left:26px}
+.cat-sidebar a i{color:var(--primary);width:18px}
+
+/* ─── BRANDS ─── */
+.brands-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+.brand-card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:24px 16px;text-align:center;transition:.2s;cursor:pointer}
+.brand-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--primary)}
+.brand-logo-placeholder{width:70px;height:70px;border-radius:14px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff}
+.brand-card h4{font-size:14px;font-weight:700;margin-bottom:2px}
+.brand-card p{font-size:11px;color:var(--text-muted)}
+
+/* ─── PERSONAL CARE ─── */
+.care-cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-bottom:32px}
+.care-cat{position:relative;border-radius:var(--radius);overflow:hidden;height:140px;cursor:pointer;display:flex;align-items:flex-end;padding:16px}
+.care-cat-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:60px}
+.care-cat-overlay{position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.55))}
+.care-cat-text{position:relative;z-index:1;color:#fff}
+.care-cat-text h4{font-size:15px;font-weight:700}
+.care-cat-text p{font-size:11px;opacity:.85}
+
+/* ─── SPORTS NUTRITION ─── */
+.sports-hero{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);border-radius:var(--radius);padding:48px;color:#fff;margin-bottom:32px;position:relative;overflow:hidden}
+.sports-hero::before{content:'💪';position:absolute;right:40px;top:50%;transform:translateY(-50%);font-size:120px;opacity:.12}
+.sports-hero h2{font-family:'Playfair Display',serif;font-size:36px;margin-bottom:12px}
+.sports-hero p{font-size:16px;opacity:.8;margin-bottom:24px;max-width:500px}
+.sports-cats{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.sports-cat-btn{background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);padding:8px 18px;border-radius:50px;font-size:13px;cursor:pointer;transition:.2s}
+.sports-cat-btn.active,.sports-cat-btn:hover{background:var(--secondary);color:#1a1a2e;border-color:var(--secondary)}
+
+/* ─── CART SIDEBAR ─── */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;display:none;align-items:stretch;justify-content:flex-end}
+.cart-overlay.open{display:flex}
+.cart-panel{background:#fff;width:400px;max-width:95vw;display:flex;flex-direction:column;animation:slideIn .3s ease}
+@keyframes slideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
+.cart-hdr{background:var(--primary);color:#fff;padding:20px;display:flex;align-items:center;justify-content:space-between}
+.cart-hdr h3{font-size:18px;font-weight:700}
+.cart-close{background:none;border:none;color:#fff;font-size:22px;cursor:pointer}
+.cart-items{flex:1;overflow-y:auto;padding:16px}
+.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border)}
+.cart-item-img{width:60px;height:60px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.cart-item-info{flex:1}
+.cart-item-info h4{font-size:14px;font-weight:600;margin-bottom:4px}
+.cart-item-info p{font-size:12px;color:var(--text-muted)}
+.qty-ctrl{display:flex;align-items:center;gap:8px;margin-top:8px}
+.qty-btn{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.qty-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.cart-footer{padding:20px;border-top:1px solid var(--border);background:#fff}
+.cart-total{display:flex;justify-content:space-between;font-size:18px;font-weight:700;margin-bottom:16px}
+.btn-checkout{width:100%;background:var(--primary);color:#fff;border:none;padding:15px;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;transition:.2s}
+.btn-checkout:hover{background:var(--primary-dark)}
+
+/* ─── MODAL ─── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:3000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:20px;max-width:480px;width:100%;padding:32px;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:22px;color:var(--text-muted);cursor:pointer}
+.modal h2{font-size:22px;font-weight:700;margin-bottom:8px;color:var(--primary-dark)}
+.modal p{font-size:14px;color:var(--text-muted);margin-bottom:24px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.form-group input,.form-group select,.form-group textarea{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:14px;outline:none;font-family:'DM Sans',sans-serif;transition:.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary)}
+.btn-full{width:100%;background:var(--primary);color:#fff;border:none;padding:14px;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;transition:.2s}
+.btn-full:hover{background:var(--primary-dark)}
+.divider{text-align:center;margin:16px 0;color:var(--text-muted);font-size:13px;position:relative}
+.divider::before,.divider::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:var(--border)}
+.divider::before{left:0}
+.divider::after{right:0}
+
+/* ─── TOAST ─── */
+.toast-container{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:10px}
+.toast{background:#1a1a2e;color:#fff;padding:14px 20px;border-radius:12px;font-size:14px;display:flex;align-items:center;gap:10px;min-width:250px;animation:toastIn .3s ease;box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.toast.success{border-left:4px solid var(--primary)}
+.toast.error{border-left:4px solid var(--danger)}
+@keyframes toastIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* ─── FOOTER ─── */
+footer{background:var(--primary-dark);color:#fff;padding:60px 0 0}
+.footer-inner{max-width:1320px;margin:auto;padding:0 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer-brand .logo-text{color:#fff;font-size:24px}
+.footer-brand p{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.7;margin:16px 0}
+.social-links{display:flex;gap:10px}
+.social-link{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:.2s}
+.social-link:hover{background:var(--primary-light)}
+.footer-col h4{font-size:15px;font-weight:700;margin-bottom:18px;color:#fff}
+.footer-col a{display:block;color:rgba(255,255,255,0.65);font-size:14px;margin-bottom:10px;transition:.15s}
+.footer-col a:hover{color:#fff;padding-left:4px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);margin-top:40px;padding:20px;text-align:center;color:rgba(255,255,255,0.5);font-size:13px}
+.footer-badges{display:flex;gap:12px;justify-content:center;margin-bottom:10px}
+.footer-badge{background:rgba(255,255,255,0.1);padding:5px 14px;border-radius:20px;font-size:11px;color:rgba(255,255,255,0.7)}
+
+/* ─── PROMO BANNER ─── */
+.promo-band{background:linear-gradient(90deg,var(--secondary),#ffb800,var(--secondary));color:#1a1a2e;text-align:center;padding:10px;font-size:13px;font-weight:600;animation:shimmer 3s infinite linear;background-size:200% 100%}
+@keyframes shimmer{0%{background-position:0 0}100%{background-position:200% 0}}
+
+/* ─── SEARCH SUGGESTIONS ─── */
+.search-suggestions{position:absolute;top:100%;left:0;right:0;background:#fff;border-radius:0 0 14px 14px;box-shadow:var(--shadow-hover);z-index:500;display:none;border:1px solid var(--border);border-top:none}
+.search-suggestions.show{display:block}
+.sug-item{padding:10px 18px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:.15s}
+.sug-item:hover{background:var(--accent);color:var(--primary)}
+.sug-item i{color:var(--text-muted);font-size:14px}
+
+/* ─── BILINGUAL ─── */
+[data-lang="ur"]{display:none}
+.lang-ur [data-lang="ur"]{display:block}
+.lang-ur [data-lang="en"]{display:none}
+
+/* ─── BESTSELLERS BANNER ─── */
+.bestseller-badge{background:linear-gradient(135deg,#f0a500,#ffb800);color:#1a1a2e;position:absolute;top:10px;right:10px;font-size:10px;padding:3px 8px;border-radius:20px;font-weight:700;display:flex;align-items:center;gap:4px}
+
+/* ─── UTILS ─── */
+.text-center{text-align:center}
+.mt-1{margin-top:8px} .mt-2{margin-top:16px} .mt-3{margin-top:24px} .mt-4{margin-top:32px}
+.mb-1{margin-bottom:8px} .mb-2{margin-bottom:16px} .mb-3{margin-bottom:24px}
+.flex{display:flex} .flex-center{display:flex;align-items:center;justify-content:center} .gap-1{gap:8px} .gap-2{gap:16px}
+.pill{display:inline-block;padding:4px 12px;border-radius:50px;font-size:12px;font-weight:600}
+.pill-green{background:var(--accent);color:var(--primary)}
+.pill-orange{background:#fff3e0;color:#e65100}
+.pill-blue{background:#e3f0fd;color:var(--info)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.breadcrumb{font-size:13px;color:var(--text-muted);margin-bottom:24px;display:flex;align-items:center;gap:6px}
+.breadcrumb span{color:var(--primary);font-weight:600}
+.input-icon{position:relative}
+.input-icon i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted)}
+.input-icon input{padding-left:42px}
+hr.divline{border:none;border-top:1px solid var(--border);margin:32px 0}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-cards{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .feature-strip{grid-template-columns:repeat(3,1fr)}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .cat-layout{grid-template-columns:1fr}
+  .cat-sidebar{position:static}
+  .consult-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .header-main{flex-wrap:wrap}
+  .search-bar{order:3;min-width:100%}
+  .hero h1{font-size:30px}
+  .feature-strip{grid-template-columns:repeat(2,1fr)}
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- PROMO BAND -->
+<div class="promo-band">🎉 FREE delivery on orders above Rs. 999 | Use code <strong>HEALTH20</strong> for 20% off your first order | Cash on Delivery Available</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="#"><i class="fas fa-phone-alt"></i> 0800-PHARMA (74276)</a>
+      <a href="#"><i class="fas fa-envelope"></i> support@pharmaplus.pk</a>
+      <a href="#"><i class="fas fa-map-marker-alt"></i> Track Your Order</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a href="#" onclick="openModal('login')">Sign In</a>
+      <a href="#" onclick="openModal('register')">Register</a>
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('en',this)">EN</button>
+        <button class="lang-btn" onclick="setLang('ur',this)">اردو</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-main">
+    <div class="logo" onclick="showPage('home')" style="cursor:pointer">
+      <div class="logo-icon"><i class="fas fa-plus"></i></div>
+      <div>
+        <span class="logo-text">PharmaPlus</span>
+        <span class="logo-sub" data-lang="en">Pakistan's Trusted Health Platform</span>
+        <span class="logo-sub" data-lang="ur">پاکستان کا قابل اعتماد صحت پلیٹ فارم</span>
+      </div>
+    </div>
+    <div class="search-bar" style="position:relative">
+      <select>
+        <option>All</option>
+        <option>Medicines</option>
+        <option>Lab Tests</option>
+        <option>Personal Care</option>
+        <option>Sports Nutrition</option>
+      </select>
+      <input type="text" id="mainSearch" placeholder="Search medicines, brands, conditions..." oninput="showSuggestions(this.value)" onblur="hideSuggestions()" autocomplete="off">
+      <button onclick="showToast('Searching...','success')"><i class="fas fa-search"></i></button>
+      <div class="search-suggestions" id="searchSugg"></div>
+    </div>
+    <div class="header-actions">
+      <button class="hdr-btn" onclick="showPage('rx')"><i class="fas fa-file-prescription"></i><span data-lang="en">Rx Upload</span><span data-lang="ur">نسخہ</span></button>
+      <button class="hdr-btn" onclick="showPage('track')"><i class="fas fa-truck"></i><span data-lang="en">Track</span><span data-lang="ur">ٹریک</span></button>
+      <button class="hdr-btn" onclick="openCart()"><i class="fas fa-shopping-cart"></i><span data-lang="en">Cart</span><span data-lang="ur">کارٹ</span><span class="badge" id="cartBadge">3</span></button>
+      <button class="btn-consult" onclick="showPage('consult')"><i class="fas fa-video"></i><span data-lang="en">Consult Now</span><span data-lang="ur">مشورہ</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-item">
+      <a class="nav-link active" onclick="showPage('home')"><i class="fas fa-home"></i> <span data-lang="en">Home</span><span data-lang="ur">ہوم</span></a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" onclick="showPage('medicines')"><i class="fas fa-pills"></i> <span data-lang="en">Medicines</span><span data-lang="ur">دوائیں</span> <i class="fas fa-chevron-down" style="font-size:10px;margin-left:2px"></i></a>
+      <div class="dropdown dropdown-mega">
+        <a onclick="showPage('disease')"><i class="fas fa-heartbeat"></i> By Disease</a>
+        <a onclick="showPage('medicines')"><i class="fas fa-pills"></i> All Medicines</a>
+        <a onclick="showPage('rx')"><i class="fas fa-file-prescription"></i> Prescription Upload</a>
+        <a onclick="showPage('compare')"><i class="fas fa-balance-scale"></i> Compare Prices</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" onclick="showPage('lab')"><i class="fas fa-flask"></i> <span data-lang="en">Lab Tests</span><span data-lang="ur">لیب ٹیسٹ</span></a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" onclick="showPage('personal')"><i class="fas fa-spa"></i> <span data-lang="en">Personal Care</span><span data-lang="ur">ذاتی نگہداشت</span></a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" onclick="showPage('sports')"><i class="fas fa-dumbbell"></i> <span data-lang="en">Sports Nutrition</span><span data-lang="ur">اسپورٹس نیوٹریشن</span></a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" onclick="showPage('bestsellers')"><i class="fas fa-star"></i> <span data-lang="en">Best Sellers</span><span data-lang="ur">بہترین</span></a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" onclick="showPage('brands')"><i class="fas fa-certificate"></i> <span data-lang="en">Top Brands</span><span data-lang="ur">برانڈز</span></a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" onclick="showPage('nearby')"><i class="fas fa-map-marker-alt"></i> <span data-lang="en">Nearby</span><span data-lang="ur">قریبی</span></a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" onclick="showPage('consult')"><i class="fas fa-user-md"></i> <span data-lang="en">Consult</span><span data-lang="ur">مشورہ</span></a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" onclick="showPage('disease')"><i class="fas fa-heartbeat"></i> <span data-lang="en">Shop by Disease</span><span data-lang="ur">بیماری سے</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                   HOME PAGE                       -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><i class="fas fa-shield-alt"></i> Pakistan's #1 Pharmacy Platform</div>
+        <h1>Your Health,<br><span>Delivered Fast</span><br>Across Pakistan</h1>
+        <p data-lang="en">Compare prices across Dow, Al-Shifa, Kausar Medicos & more. Upload prescriptions, consult pharmacists via video, and track orders in real-time.</p>
+        <p data-lang="ur" style="font-size:15px">ڈاؤ، الشفاء، کوثر میڈیکوس کے ادویات کی قیمتیں موازنہ کریں۔ نسخہ اپلوڈ کریں اور ویڈیو کال سے مشورہ کریں۔</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="showPage('medicines')"><i class="fas fa-pills"></i> Shop Medicines</button>
+          <button class="btn-outline-white" onclick="showPage('rx')"><i class="fas fa-camera"></i> Scan Prescription</button>
+        </div>
+      </div>
+      <div class="hero-cards">
+        <div class="hero-card" onclick="showPage('compare')">
+          <div class="hero-card-icon">💊</div>
+          <h4>Price Compare</h4>
+          <p>Same medicine, different pharmacies — see who's cheapest</p>
+        </div>
+        <div class="hero-card" onclick="showPage('consult')">
+          <div class="hero-card-icon">📹</div>
+          <h4>Video Consult</h4>
+          <p>Live video call with certified pharmacists</p>
+        </div>
+        <div class="hero-card" onclick="showPage('lab')">
+          <div class="hero-card-icon">🔬</div>
+          <h4>Lab Tests</h4>
+          <p>Compare lab prices, book home sample collection</p>
+        </div>
+        <div class="hero-card" onclick="showPage('track')">
+          <div class="hero-card-icon">📦</div>
+          <h4>Track Order</h4>
+          <p>Real-time delivery tracking across Pakistan</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat"><div class="stat-num" id="cnt1">0</div><div class="stat-label">Medicines Available</div></div>
+      <div class="stat"><div class="stat-num" id="cnt2">0</div><div class="stat-label">Partner Pharmacies</div></div>
+      <div class="stat"><div class="stat-num" id="cnt3">0</div><div class="stat-label">Happy Customers</div></div>
+      <div class="stat"><div class="stat-num" id="cnt4">0</div><div class="stat-label">Cities Covered</div></div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="feature-strip">
+    <div class="feature-card" onclick="showPage('rx')">
+      <div class="feature-icon f-green"><i class="fas fa-file-prescription"></i></div>
+      <h4>Scan Prescription</h4>
+      <p>Upload & get medicines matched automatically</p>
+    </div>
+    <div class="feature-card" onclick="showPage('consult')">
+      <div class="feature-icon f-blue"><i class="fas fa-video"></i></div>
+      <h4>Video Consultation</h4>
+      <p>Face-to-face with certified pharmacists</p>
+    </div>
+    <div class="feature-card" onclick="showPage('compare')">
+      <div class="feature-icon f-amber"><i class="fas fa-balance-scale"></i></div>
+      <h4>Price Comparison</h4>
+      <p>Compare Dow, Al-Shifa, Kausar & more</p>
+    </div>
+    <div class="feature-card" onclick="showPage('nearby')">
+      <div class="feature-icon f-purple"><i class="fas fa-map-marked-alt"></i></div>
+      <h4>Nearby Pharmacies</h4>
+      <p>Find open pharmacies near you on map</p>
+    </div>
+    <div class="feature-card" onclick="showPage('track')">
+      <div class="feature-icon f-red"><i class="fas fa-truck"></i></div>
+      <h4>Track Orders</h4>
+      <p>Live tracking with SMS & WhatsApp updates</p>
+    </div>
+  </div>
+
+  <!-- PRICE COMPARE PREVIEW -->
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">🏆 Price <span>Comparison</span></h2>
+      <a class="see-all" onclick="showPage('compare')">View All <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="compare-section">
+      <div class="compare-header">
+        <i class="fas fa-balance-scale" style="font-size:20px"></i>
+        <h3>Panadol 500mg — 20 Tablets</h3>
+        <span class="pill pill-orange" style="margin-left:auto">Generic: Paracetamol 500mg</span>
+      </div>
+      <table class="compare-table">
+        <thead>
+          <tr><th>Pharmacy</th><th>Price</th><th>Stock</th><th>Delivery</th><th>Rating</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="pharmacy-name"><div class="pharm-logo" style="background:#1a6b4a">DW</div>Dow Pharmacy</div></td>
+            <td><span class="price-tag price-best">Rs. 165 <span class="saving-badge">BEST</span></span></td>
+            <td><span class="stock-badge in-stock">In Stock</span></td>
+            <td>2-4 hrs</td>
+            <td>⭐ 4.7</td>
+            <td><button class="btn-order-sm" onclick="addToCart('Panadol 500mg','Dow','165')">Order</button></td>
+          </tr>
+          <tr>
+            <td><div class="pharmacy-name"><div class="pharm-logo" style="background:#1976d2">AS</div>Al-Shifa Pharmacy</div></td>
+            <td><span class="price-tag">Rs. 178</span></td>
+            <td><span class="stock-badge in-stock">In Stock</span></td>
+            <td>3-5 hrs</td>
+            <td>⭐ 4.5</td>
+            <td><button class="btn-order-sm" onclick="addToCart('Panadol 500mg','Al-Shifa','178')">Order</button></td>
+          </tr>
+          <tr>
+            <td><div class="pharmacy-name"><div class="pharm-logo" style="background:#7b2d8b">KM</div>Kausar Medicos</div></td>
+            <td><span class="price-tag">Rs. 185</span></td>
+            <td><span class="stock-badge in-stock">In Stock</span></td>
+            <td>1-3 hrs</td>
+            <td>⭐ 4.8</td>
+            <td><button class="btn-order-sm" onclick="addToCart('Panadol 500mg','Kausar','185')">Order</button></td>
+          </tr>
+          <tr>
+            <td><div class="pharmacy-name"><div class="pharm-logo" style="background:#e53935">MK</div>MedKhana</div></td>
+            <td><span class="price-tag">Rs. 192</span></td>
+            <td><span class="stock-badge out-stock">Limited</span></td>
+            <td>Next Day</td>
+            <td>⭐ 4.3</td>
+            <td><button class="btn-order-sm" onclick="addToCart('Panadol 500mg','MedKhana','192')">Order</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- BESTSELLING PRODUCTS -->
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">🔥 Best <span>Sellers</span></h2>
+      <a class="see-all" onclick="showPage('bestsellers')">View All <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="product-grid" id="homeProducts"></div>
+  </div>
+
+  <!-- QUICK SHOP BY DISEASE -->
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">💊 Shop by <span>Condition</span></h2>
+      <a class="see-all" onclick="showPage('disease')">All Conditions <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="disease-grid" id="homeDiseases"></div>
+  </div>
+
+  <!-- PERSONAL CARE PREVIEW -->
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">✨ Personal <span>Care</span></h2>
+      <a class="see-all" onclick="showPage('personal')">View All <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="care-cats" id="homeCare"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--              PRESCRIPTION SCANNER                  -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-rx" class="page">
+  <div class="section" style="padding-top:40px">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / <span>Prescription Scanner</span></div>
+    <div class="section-header">
+      <h2 class="section-title">📋 Prescription <span>Scanner</span></h2>
+    </div>
+    <div class="grid-2">
+      <div>
+        <div class="rx-scanner" onclick="document.getElementById('rxFile').click()" id="rxDrop">
+          <input type="file" id="rxFile" accept="image/*,.pdf" style="display:none" onchange="scanPrescription(this)">
+          <div class="scan-icon"><i class="fas fa-camera"></i></div>
+          <h3 data-lang="en">Upload or Take Photo of Prescription</h3>
+          <h3 data-lang="ur">نسخہ کی تصویر اپلوڈ کریں</h3>
+          <p>Supports JPG, PNG, PDF • AI will identify medicines automatically</p>
+          <br>
+          <div style="display:flex;gap:12px;justify-content:center;margin-top:8px">
+            <span class="pill pill-green"><i class="fas fa-camera"></i> Take Photo</span>
+            <span class="pill pill-blue"><i class="fas fa-upload"></i> Upload File</span>
+          </div>
+        </div>
+        <div class="rx-result" id="rxResult">
+          <h3 style="color:var(--primary-dark);margin-bottom:16px"><i class="fas fa-check-circle" style="color:var(--primary)"></i> Medicines Found in Prescription</h3>
+          <div id="rxMedList"></div>
+          <button class="btn-full" style="margin-top:16px" onclick="addAllRxToCart()"><i class="fas fa-cart-plus"></i> Add All to Cart</button>
+        </div>
+      </div>
+      <div>
+        <div style="background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:28px;margin-bottom:20px">
+          <h3 style="font-size:18px;font-weight:700;color:var(--primary-dark);margin-bottom:16px">How it works</h3>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">1</div>
+              <div><h4 style="font-size:14px;font-weight:700">Upload Prescription</h4><p style="font-size:13px;color:var(--text-muted)">Take a clear photo or upload PDF of your doctor's prescription</p></div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">2</div>
+              <div><h4 style="font-size:14px;font-weight:700">AI Reads Medicines</h4><p style="font-size:13px;color:var(--text-muted)">Our AI identifies all medicines, dosages and quantities</p></div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">3</div>
+              <div><h4 style="font-size:14px;font-weight:700">Compare Prices</h4><p style="font-size:13px;color:var(--text-muted)">See prices from all partner pharmacies and choose the best</p></div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">4</div>
+              <div><h4 style="font-size:14px;font-weight:700">Order & Track</h4><p style="font-size:13px;color:var(--text-muted)">Add to cart, checkout and track delivery in real-time</p></div>
+            </div>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#e3f0fd,#e8f5ef);border-radius:var(--radius);padding:24px">
+          <h4 style="font-size:15px;font-weight:700;color:var(--primary-dark);margin-bottom:8px">📞 Need help?</h4>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">Speak directly with our pharmacist team</p>
+          <button class="btn-primary" style="font-size:13px;padding:10px 20px" onclick="showPage('consult')"><i class="fas fa-phone"></i> Call Pharmacist</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                 CONSULTATION                       -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-consult" class="page">
+  <div class="section" style="padding-top:40px">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / <span>Consultation</span></div>
+    <div class="section-header">
+      <h2 class="section-title">👨‍⚕️ Consult a <span>Pharmacist</span></h2>
+    </div>
+    <div class="consult-grid">
+      <div class="consult-card" onclick="startVideoCall()">
+        <div class="consult-icon" style="background:#e3f2fd;color:#1976d2"><i class="fas fa-video"></i></div>
+        <h3>Video Consultation</h3>
+        <p>Face-to-face consultation with a certified pharmacist. Discuss your medicines, side effects, and health concerns in real-time.</p>
+        <button class="btn-primary" style="margin:0 auto"><i class="fas fa-video"></i> Start Video Call</button>
+      </div>
+      <div class="consult-card" onclick="startChat()">
+        <div class="consult-icon" style="background:#e8f5ef;color:var(--primary)"><i class="fas fa-comments"></i></div>
+        <h3>Chat Consultation</h3>
+        <p>Send text messages and photos to a pharmacist. Get answers within minutes on your medicines and dosages.</p>
+        <button class="btn-primary" style="margin:0 auto;background:var(--primary)"><i class="fas fa-comment"></i> Start Chat</button>
+      </div>
+    </div>
+
+    <!-- VIDEO CALL UI -->
+    <div id="videoCallUI" style="display:none;margin-top:32px">
+      <div class="video-ui">
+        <div class="video-placeholder">
+          <div id="videoStatus">
+            <i class="fas fa-video"></i>
+            <p style="font-size:18px;font-weight:600;margin-bottom:8px">Connecting to Pharmacist...</p>
+            <p style="opacity:.6;font-size:14px">Average wait time: 2-3 minutes</p>
+            <div style="margin-top:20px;display:flex;gap:12px;justify-content:center">
+              <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:16px 24px;text-align:center">
+                <div style="font-size:24px;font-weight:700" id="waitTimer">02:47</div>
+                <div style="font-size:12px;opacity:.7">Estimated wait</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="video-controls">
+          <button class="vcBtn" style="background:#fff;color:#333" onclick="toggleMic(this)" title="Mute"><i class="fas fa-microphone"></i></button>
+          <button class="vcBtn" style="background:#e53935;color:#fff" onclick="endCall()" title="End Call"><i class="fas fa-phone-slash"></i></button>
+          <button class="vcBtn" style="background:#fff;color:#333" onclick="toggleCam(this)" title="Camera"><i class="fas fa-video"></i></button>
+          <button class="vcBtn" style="background:#1976d2;color:#fff" title="Chat"><i class="fas fa-comment"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAT UI -->
+    <div id="chatUI" style="display:none;margin-top:32px">
+      <div class="chat-window">
+        <div class="chat-header">
+          <div class="pharma-avatar" style="background:#fff;color:var(--primary);width:38px;height:38px;font-size:14px">DR</div>
+          <div>
+            <h4 style="font-size:15px;font-weight:700">Dr. Raza Haider</h4>
+            <span style="font-size:12px;opacity:.8"><span class="online-dot"></span>Online — Pharm.D, 8 yrs exp</span>
+          </div>
+          <button style="margin-left:auto;background:rgba(255,255,255,0.2);border:none;color:#fff;padding:7px 14px;border-radius:50px;font-size:12px;cursor:pointer" onclick="startVideoCall()"><i class="fas fa-video"></i> Video Call</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg bot">Hello! I'm Dr. Raza, your pharmacist. How can I help you today? 👋</div>
+          <div class="msg bot">You can ask me about medicines, dosages, side effects, drug interactions, or general health queries.</div>
+        </div>
+        <div class="chat-input">
+          <button style="background:var(--accent);color:var(--primary);border:none;width:40px;height:40px;border-radius:50%;font-size:14px" title="Send image"><i class="fas fa-image"></i></button>
+          <input type="text" id="chatIn" placeholder="Type your question..." onkeydown="if(event.key==='Enter')sendMsg()">
+          <button class="chat-send" onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 20px;font-size:20px;font-weight:700;color:var(--primary-dark)">Available Pharmacists</h3>
+    <div class="pharmacist-list" id="pharmacistList"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                 NEARBY PHARMACIES                  -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-nearby" class="page">
+  <div class="section" style="padding-top:40px">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / <span>Nearby Pharmacies</span></div>
+    <div class="section-header">
+      <h2 class="section-title">📍 Nearby <span>Pharmacies</span></h2>
+      <button class="btn-primary" style="font-size:13px;padding:10px 20px" onclick="getLocation()"><i class="fas fa-location-arrow"></i> Use My Location</button>
+    </div>
+    <div class="map-container">
+      <div class="map-placeholder">
+        <i class="fas fa-map-marked-alt"></i>
+        <p style="font-size:16px;font-weight:600;color:var(--primary-dark)">Interactive Map — Karachi, Pakistan</p>
+        <p style="font-size:13px;color:var(--text-muted)">Click "Use My Location" to find pharmacies near you</p>
+      </div>
+      <div class="pharmacy-markers">
+        <div class="marker" style="left:25%;top:35%">
+          <div class="marker-pin"><i class="fas fa-plus"></i></div>
+          <div class="marker-popup"><h5>Dow Pharmacy</h5><p>DUHS Campus, Ojha<br>⭐ 4.7 • Open Now</p><button class="btn-order-sm" style="margin-top:8px;font-size:11px" onclick="showToast('Opening Dow Pharmacy details','success')">View</button></div>
+        </div>
+        <div class="marker" style="left:55%;top:45%">
+          <div class="marker-pin" style="background:#1976d2"><i class="fas fa-plus"></i></div>
+          <div class="marker-popup"><h5>Al-Shifa Pharmacy</h5><p>North Karachi<br>⭐ 4.5 • Open Now</p></div>
+        </div>
+        <div class="marker" style="left:70%;top:30%">
+          <div class="marker-pin" style="background:#7b2d8b"><i class="fas fa-plus"></i></div>
+          <div class="marker-popup"><h5>Kausar Medicos</h5><p>Gulshan-e-Iqbal<br>⭐ 4.8 • Open 24/7</p></div>
+        </div>
+        <div class="marker" style="left:40%;top:65%">
+          <div class="marker-pin" style="background:#e53935"><i class="fas fa-plus"></i></div>
+          <div class="marker-popup"><h5>MedKhana</h5><p>DHA Phase 6<br>⭐ 4.3 • Open Now</p></div>
+        </div>
+        <div class="marker" style="left:80%;top:55%">
+          <div class="marker-pin" style="background:#f57c00"><i class="fas fa-plus"></i></div>
+          <div class="marker-popup"><h5>City Medical</h5><p>Clifton Block 5<br>⭐ 4.6 • Closes 11pm</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="nearby-list mt-4" id="nearbyList"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                   LAB TESTS                       -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-lab" class="page">
+  <div class="section" style="padding-top:40px">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / <span>Lab Tests & Checkups</span></div>
+    <div class="section-header">
+      <h2 class="section-title">🔬 Lab Tests & <span>Checkups</span></h2>
+      <div style="display:flex;gap:10px">
+        <button class="btn-primary" style="font-size:13px;padding:10px 20px" onclick="openModal('addLabCat')"><i class="fas fa-plus"></i> Add Category</button>
+        <button class="btn-outline-white" style="color:var(--primary);border-color:var(--primary);padding:10px 20px;border-radius:50px;font-size:13px;font-weight:600;background:#fff;border:2px solid var(--primary)" onclick="showPage('lab-compare')"><i class="fas fa-balance-scale"></i> Compare Labs</button>
+      </div>
+    </div>
+    <div class="lab-cats" id="labCats"></div>
+    <div class="section-header" style="margin-bottom:20px">
+      <h3 style="font-size:18px;font-weight:700;color:var(--primary-dark)">Popular Tests</h3>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="subcat-btn active" onclick="filterLabTests('all',this)">All Tests</button>
+        <button class="subcat-btn" onclick="filterLabTests('blood',this)">Blood</button>
+        <button class="subcat-btn" onclick="filterLabTests('urine',this)">Urine</button>
+        <button class="subcat-btn" onclick="filterLabTests('imaging',this)">Imaging</button>
+        <button class="subcat-btn" onclick="filterLabTests('cardiac',this)">Cardiac</button>
+      </div>
+    </div>
+    <div class="lab-tests-grid" id="labTestsGrid"></div>
+
+    <!-- LAB PRICE COMPARE -->
+    <div style="margin-top:48px">
+      <div class="section-header">
+        <h2 class="section-title">🏥 Compare Lab <span>Prices</span></h2>
+      </div>
+      <div class="compare-section">
+        <div class="compare-header">
+          <i class="fas fa-vial" style="font-size:20px"></i>
+          <h3>CBC (Complete Blood Count)</h3>
+          <span class="pill pill-orange" style="margin-left:auto">Most Popular Test</span>
+        </div>
+        <table class="compare-table">
+          <thead>
+            <tr><th>Laboratory</th><th>Price</th><th>Home Sample</th><th>Report Time</th><th>Rating</th><th>Book</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="pharmacy-name"><div class="pharm-logo" style="background:#1a6b4a">DL</div>Dow Diagnostics</div></td>
+              <td><span class="price-tag price-best">Rs. 400 <span class="saving-badge">BEST</span></span></td>
+              <td><span class="stock-badge in-stock">Available</span></td>
+              <td>4-6 hrs</td>
+              <td>⭐ 4.8</td>
+              <td><button class="btn-order-sm" onclick="showToast('Booking CBC at Dow Diagnostics','success')">Book</button></td>
+            </tr>
+            <tr>
+              <td><div class="pharmacy-name"><div class="pharm-logo" style="background:#1976d2">IA</div>Islamabad Diagnostics</div></td>
+              <td><span class="price-tag">Rs. 450</span></td>
+              <td><span class="stock-badge in-stock">Available</span></td>
+              <td>6-8 hrs</td>
+              <td>⭐ 4.6</td>
+              <td><button class="btn-order-sm" onclick="showToast('Booking CBC at Islamabad Diagnostics','success')">Book</button></td>
+            </tr>
+            <tr>
+              <td><div class="pharmacy-name"><div class="pharm-logo" style="background:#7b2d8b">LL</div>Liaquat Lab</div></td>
+              <td><span class="price-tag">Rs. 500</span></td>
+              <td><span class="stock-badge out-stock">Not Available</span></td>
+              <td>Same Day</td>
+              <td>⭐ 4.5</td>
+              <td><button class="btn-order-sm" onclick="showToast('Booking CBC at Liaquat Lab','success')">Book</button></td>
+            </tr>
+            <tr>
+              <td><div class="pharmacy-name"><div class="pharm-logo" style="background:#e53935">CL</div>Chughtai Lab</div></td>
+              <td><span class="price-tag">Rs. 550</span></td>
+              <td><span class="stock-badge in-stock">Available</span></td>
+              <td>3-4 hrs</td>
+              <td>⭐ 4.9</td>
+              <td><button class="btn-order-sm" onclick="showToast('Booking CBC at Chughtai Lab','success')">Book</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                 ORDER TRACKING                     -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-track" class="page">
+  <div class="section" style="padding-top:40px">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / <span>Track Order</span></div>
+    <div class="section-header">
+      <h2 class="section-title">📦 Track Your <span>Order</span></h2>
+    </div>
+    <div class="track-form">
+      <h3><i class="fas fa-truck" style="color:var(--primary)"></i> Enter Order Details</h3>
+      <div class="track-input-group">
+        <input type="text" id="trackOrderId" placeholder="Enter Order ID (e.g., PP-2024-7891)" value="PP-2024-7891">
+        <input type="text" id="trackPhone" placeholder="Phone number" style="max-width:200px" value="03XX-XXXXXXX">
+        <button class="btn-track" onclick="trackOrder()"><i class="fas fa-search"></i> Track</button>
+      </div>
+    </div>
+    <div class="order-timeline" id="orderTimeline">
+      <div style="background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:28px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+          <div>
+            <h3 style="font-size:18px;font-weight:700;color:var(--primary-dark)">Order #PP-2024-7891</h3>
+            <p style="font-size:14px;color:var(--text-muted)">Placed on 30 April 2026 • 3 items • Rs. 845</p>
+          </div>
+          <span class="pill" style="background:#e8f5ef;color:var(--primary);font-size:14px;padding:6px 16px">🚚 Out for Delivery</span>
+        </div>
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="tl-icon done"><i class="fas fa-check"></i></div>
+            <span class="tl-label done">Order Placed</span>
+            <span style="font-size:11px;color:var(--text-muted)">9:32 AM</span>
+          </div>
+          <div class="timeline-step">
+            <div class="tl-icon done"><i class="fas fa-check"></i></div>
+            <span class="tl-label done">Confirmed</span>
+            <span style="font-size:11px;color:var(--text-muted)">9:45 AM</span>
+          </div>
+          <div class="timeline-step">
+            <div class="tl-icon done"><i class="fas fa-check"></i></div>
+            <span class="tl-label done">Packed</span>
+            <span style="font-size:11px;color:var(--text-muted)">10:15 AM</span>
+          </div>
+          <div class="timeline-step">
+            <div class="tl-icon active"><i class="fas fa-truck"></i></div>
+            <span class="tl-label done">Out for Delivery</span>
+            <span style="font-size:11px;color:var(--text-muted)">11:02 AM</span>
+          </div>
+          <div class="timeline-step">
+            <div class="tl-icon"><i class="fas fa-home"></i></div>
+            <span class="tl-label">Delivered</span>
+            <span style="font-size:11px;color:var(--text-muted)">Est. 1:00 PM</span>
+          </div>
+        </div>
+        <div style="background:var(--accent);border-radius:12px;padding:16px;margin-top:8px">
+          <p style="font-size:14px;color:var(--primary-dark);font-weight:600"><i class="fas fa-motorcycle" style="margin-right:8px"></i>Rider: Ali Khan • 🌐 Live GPS: 2.3 km away</p>
+          <p style="font-size:13px;color:var(--text-muted);margin-top:4px">Expected delivery between 12:45 PM – 1:15 PM</p>
+        </div>
+        <div style="margin-top:20px">
+          <h4 style="font-size:15px;font-weight:700;margin-bottom:12px">Order Items</h4>
+          <div class="rx-med-item"><div><p style="font-weight:600">Panadol 500mg × 2</p><p style="font-size:12px;color:var(--text-muted)">Dow Pharmacy</p></div><span class="price-tag" style="font-size:16px">Rs. 330</span></div>
+          <div class="rx-med-item"><div><p style="font-weight:600">Augmentin 625mg × 1</p><p style="font-size:12px;color:var(--text-muted)">Al-Shifa Pharmacy</p></div><span class="price-tag" style="font-size:16px">Rs. 515</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--               PRICE COMPARISON PAGE                -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-compare" class="page">
+  <div class="section" style="padding-top:40px">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / <span>Price Comparison</span></div>
+    <div class="section-header">
+      <h2 class="section-title">⚖️ Medicine Price <span>Comparison</span></h2>
+    </div>
+    <div style="background:#fff;border-radius:var(--radius);border:1px solid var(--border);padding:24px;margin-bottom:32px">
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div class="search-bar" style="flex:1;max-width:none;border-radius:12px">
+          <input type="text" id="compareSearch" placeholder="Search medicine by name, brand, or generic formula..." style="border-radius:12px">
+          <button onclick="searchCompare()" style="border-radius:0 12px 12px 0"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+    <div id="compareResults"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--               DISEASE / SHOP BY CONDITION         -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-disease" class="page">
+  <div class="section" style="padding-top:40px">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / <span>Shop by Condition</span></div>
+    <div class="section-header">
+      <h2 class="section-title">💊 Shop by <span>Condition</span></h2>
+    </div>
+    <div class="disease-grid" id="diseaseCats"></div>
+    <div class="subcats" id="subcatList"></div>
+    <div class="product-grid" id="diseaseProducts"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                  MEDICINES PAGE                   -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-medicines" class="page">
+  <div class="section" style="padding-top:40px">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / <span>Medicines</span></div>
+    <div class="cat-layout">
+      <div class="cat-sidebar">
+        <div class="cat-sidebar-title"><i class="fas fa-list"></i> Categories</div>
+        <a onclick="filterMeds('all',this)" class="active"><i class="fas fa-th"></i> All Medicines</a>
+        <a onclick="filterMeds('antibiotics',this)"><i class="fas fa-bacteria"></i> Antibiotics</a>
+        <a onclick="filterMeds('cardiac',this)"><i class="fas fa-heart"></i> Cardiac</a>
+        <a onclick="filterMeds('diabetes',this)"><i class="fas fa-tint"></i> Diabetes</a>
+        <a onclick="filterMeds('pain',this)"><i class="fas fa-band-aid"></i> Pain Relief</a>
+        <a onclick="filterMeds('gastro',this)"><i class="fas fa-stomach"></i> Gastrointestinal</a>
+        <a onclick="filterMeds('vitamins',this)"><i class="fas fa-leaf"></i> Vitamins & Supplements</a>
+        <a onclick="filterMeds('respiratory',this)"><i class="fas fa-lungs"></i> Respiratory</a>
+        <a onclick="filterMeds('derma',this)"><i class="fas fa-hand-sparkles"></i> Dermatology</a>
+        <a onclick="filterMeds('mental',this)"><i class="fas fa-brain"></i> Mental Health</a>
+        <a onclick="filterMeds('eye',this)"><i class="fas fa-eye"></i> Eye & ENT</a>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px;flex-wrap:wrap">
+          <p style="font-size:14px;color:var(--text-muted)">Showing <strong id="medCount">0</strong> medicines</p>
+          <select style="border:1px solid var(--border);border-radius:50px;padding:8px 16px;font-size:13px;outline:none" onchange="sortMeds(this.value)">
+            <option>Sort: Relevance</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Most Popular</option>
+          </select>
+        </div>
+        <div class="product-grid" id="medsGrid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                PERSONAL CARE PAGE                 -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-personal" class="page">
+  <div class="section" style="padding-top:40px">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / <span>Personal Care</span></div>
+    <div class="section-header"><h2 class="section-title">✨ Personal <span>Care</span></h2></div>
+    <div class="care-cats" id="personalCats"></div>
+    <div class="product-grid" id="personalProducts"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--              SPORTS NUTRITION PAGE                -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-sports" class="page">
+  <div class="section" style="padding-top:40px">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / <span>Sports Nutrition</span></div>
+    <div class="sports-hero">
+      <h2>💪 Sports & Fitness Nutrition</h2>
+      <p>Premium supplements for performance, recovery, and results. Authentic products, competitive prices.</p>
+      <button class="btn-primary" onclick="filterSports('all')"><i class="fas fa-dumbbell"></i> Shop All</button>
+      <div class="sports-cats" id="sportsCatBtns"></div>
+    </div>
+    <div class="product-grid" id="sportsGrid"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                 BEST SELLERS PAGE                 -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-bestsellers" class="page">
+  <div class="section" style="padding-top:40px">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / <span>Best Sellers</span></div>
+    <div class="section-header"><h2 class="section-title">🔥 Best <span>Sellers</span></h2></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px" id="bsFilterBtns">
+      <button class="subcat-btn active" onclick="filterBS('all',this)">All</button>
+      <button class="subcat-btn" onclick="filterBS('medicines',this)">Medicines</button>
+      <button class="subcat-btn" onclick="filterBS('care',this)">Personal Care</button>
+      <button class="subcat-btn" onclick="filterBS('supplements',this)">Supplements</button>
+      <button class="subcat-btn" onclick="filterBS('baby',this)">Baby & Mom</button>
+    </div>
+    <div class="product-grid" id="bsGrid"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                  TOP BRANDS PAGE                  -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="page-brands" class="page">
+  <div class="section" style="padding-top:40px">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / <span>Top Brands</span></div>
+    <div class="section-header"><h2 class="section-title">🏆 Top <span>Brands</span></h2></div>
+    <div class="brands-grid" id="brandsGrid"></div>
+    <div class="section-header" style="margin-top:48px;margin-bottom:24px">
+      <h3 style="font-size:20px;font-weight:700;color:var(--primary-dark)">Featured Brand Products</h3>
+    </div>
+    <div class="product-grid" id="brandProducts"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                   CART SIDEBAR                    -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCartOnBg(event)">
+  <div class="cart-panel">
+    <div class="cart-hdr">
+      <h3>🛒 Your Cart</h3>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div style="font-size:13px;color:var(--text-muted);margin-bottom:8px">Estimated delivery: 2-4 hours</div>
+      <div class="cart-total"><span>Total</span><span id="cartTotal">Rs. 0</span></div>
+      <button class="btn-checkout" onclick="checkout()">Proceed to Checkout <i class="fas fa-arrow-right"></i></button>
+      <div style="display:flex;justify-content:center;gap:12px;margin-top:12px">
+        <span style="font-size:12px;color:var(--text-muted)"><i class="fas fa-shield-alt" style="color:var(--primary)"></i> Secure</span>
+        <span style="font-size:12px;color:var(--text-muted)"><i class="fas fa-truck" style="color:var(--primary)"></i> Fast Delivery</span>
+        <span style="font-size:12px;color:var(--text-muted)"><i class="fas fa-undo" style="color:var(--primary)"></i> Easy Return</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                    MODALS                         -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-login" onclick="closeModalOnBg(event,'login')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login')">✕</button>
+    <h2>Welcome Back</h2>
+    <p>Sign in to your PharmaPlus account</p>
+    <div class="form-group"><label>Phone / Email</label><input type="text" placeholder="03XX-XXXXXXX or email"></div>
+    <div class="form-group"><label>Password</label><input type="password" placeholder="Enter password"></div>
+    <button class="btn-full" onclick="closeModal('login');showToast('Welcome back!','success')">Sign In</button>
+    <div class="divider">or</div>
+    <button style="width:100%;background:#fff;border:1px solid var(--border);border-radius:50px;padding:12px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/60px-Google_2015_logo.svg.png" style="height:18px"> Sign in with Google
+    </button>
+    <p style="text-align:center;font-size:13px;margin-top:16px">Don't have an account? <a style="color:var(--primary);font-weight:600;cursor:pointer" onclick="closeModal('login');openModal('register')">Register</a></p>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-register" onclick="closeModalOnBg(event,'register')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('register')">✕</button>
+    <h2>Create Account</h2>
+    <p>Join PharmaPlus for exclusive health deals</p>
+    <div class="form-group"><label>Full Name</label><input type="text" placeholder="Muhammad Ali"></div>
+    <div class="form-group"><label>Phone Number</label><input type="text" placeholder="03XX-XXXXXXX"></div>
+    <div class="form-group"><label>Email</label><input type="email" placeholder="email@example.com"></div>
+    <div class="form-group"><label>Password</label><input type="password" placeholder="Create password"></div>
+    <div class="form-group"><label>City</label><select><option>Karachi</option><option>Lahore</option><option>Islamabad</option><option>Rawalpindi</option><option>Faisalabad</option><option>Multan</option><option>Peshawar</option><option>Quetta</option></select></div>
+    <button class="btn-full" onclick="closeModal('register');showToast('Account created! Welcome to PharmaPlus 🎉','success')">Create Account</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-addLabCat" onclick="closeModalOnBg(event,'addLabCat')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('addLabCat')">✕</button>
+    <h2>Add Lab Test Category</h2>
+    <p>Add a new category to the lab tests section</p>
+    <div class="form-group"><label>Category Name</label><input type="text" id="newCatName" placeholder="e.g., Allergy Tests"></div>
+    <div class="form-group"><label>Icon (Emoji)</label><input type="text" id="newCatIcon" placeholder="e.g., 🧬" maxlength="2"></div>
+    <div class="form-group"><label>Description</label><input type="text" id="newCatDesc" placeholder="Brief description"></div>
+    <div class="form-group"><label>Number of Tests</label><input type="number" id="newCatCount" placeholder="e.g., 12"></div>
+    <button class="btn-full" onclick="addLabCategory()">Add Category</button>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--                    FOOTER                         -->
+<!-- ═══════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div class="logo-icon"><i class="fas fa-plus"></i></div>
+        <span class="logo-text">PharmaPlus</span>
+      </div>
+      <p>Pakistan's most trusted pharmacy comparison platform. We help you find the best medicines at the lowest prices across all major pharmacies.</p>
+      <div class="social-links">
+        <a class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a class="social-link"><i class="fab fa-instagram"></i></a>
+        <a class="social-link"><i class="fab fa-whatsapp"></i></a>
+        <a class="social-link"><i class="fab fa-twitter"></i></a>
+        <a class="social-link"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a onclick="showPage('rx')">Prescription Upload</a>
+      <a onclick="showPage('consult')">Video Consultation</a>
+      <a onclick="showPage('lab')">Lab Tests</a>
+      <a onclick="showPage('compare')">Price Comparison</a>
+      <a onclick="showPage('track')">Order Tracking</a>
+      <a onclick="showPage('nearby')">Nearby Pharmacies</a>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a onclick="showPage('medicines')">All Medicines</a>
+      <a onclick="showPage('personal')">Personal Care</a>
+      <a onclick="showPage('sports')">Sports Nutrition</a>
+      <a onclick="showPage('bestsellers')">Best Sellers</a>
+      <a onclick="showPage('brands')">Top Brands</a>
+      <a onclick="showPage('disease')">Shop by Disease</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Refund Policy</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Partner with Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-badges">
+      <span class="footer-badge">🏥 Licensed Platform</span>
+      <span class="footer-badge">🔒 SSL Secured</span>
+      <span class="footer-badge">💊 DRAP Compliant</span>
+      <span class="footer-badge">📦 Cash on Delivery</span>
+    </div>
+    <p>© 2026 PharmaPlus Pakistan. All rights reserved. | Helpline: 0800-74276 | 24/7 Support</p>
+  </div>
+</footer>
+
+<script>
+/* ─────────────── DATA ─────────────── */
+const products = [
+  {id:1,name:'Panadol Extra',brand:'GSK',generic:'Paracetamol + Caffeine',price:195,oldPrice:220,category:'pain',emoji:'💊',badge:'sale',tag:'medicines'},
+  {id:2,name:'Augmentin 625mg',brand:'GSK',generic:'Amoxicillin + Clavulanate',price:485,oldPrice:520,category:'antibiotics',emoji:'💊',badge:'rx',tag:'medicines'},
+  {id:3,name:'Brufen 400mg',brand:'Abbott',generic:'Ibuprofen',price:145,oldPrice:160,category:'pain',emoji:'💊',badge:'',tag:'medicines'},
+  {id:4,name:'Nexium 20mg',brand:'AstraZeneca',generic:'Esomeprazole',price:890,oldPrice:1050,category:'gastro',emoji:'💊',badge:'sale',tag:'medicines'},
+  {id:5,name:'Metformin 500mg',brand:'Various',generic:'Metformin HCl',price:95,oldPrice:110,category:'diabetes',emoji:'💊',badge:'',tag:'medicines'},
+  {id:6,name:'Amlodipine 5mg',brand:'Pfizer',generic:'Amlodipine Besylate',price:165,oldPrice:190,category:'cardiac',emoji:'💊',badge:'',tag:'medicines'},
+  {id:7,name:'Zyrtec 10mg',brand:'UCB',generic:'Cetirizine HCl',price:275,oldPrice:310,category:'respiratory',emoji:'💊',badge:'sale',tag:'medicines'},
+  {id:8,name:'Vitamin D3 1000IU',brand:'Ensure',generic:'Cholecalciferol',price:350,oldPrice:420,category:'vitamins',emoji:'💊',badge:'new',tag:'supplements'},
+  {id:9,name:'Cetaphil Cleanser',brand:'Cetaphil',generic:'Gentle Skin Cleanser',price:1250,oldPrice:1450,category:'derma',emoji:'🧴',badge:'sale',tag:'care'},
+  {id:10,name:'Vicks VapoRub',brand:'P&G',generic:'Camphor/Menthol',price:220,oldPrice:240,category:'respiratory',emoji:'💊',badge:'',tag:'medicines'},
+  {id:11,name:'Omega-3 Fish Oil',brand:'Pharma Nord',generic:'EPA/DHA 1000mg',price:850,oldPrice:1000,category:'vitamins',emoji:'🐟',badge:'new',tag:'supplements'},
+  {id:12,name:'Whey Protein Gold',brand:'Optimum Nutrition',generic:'Whey Protein Isolate',price:9500,oldPrice:11000,category:'sports',emoji:'💪',badge:'sale',tag:'supplements'},
+  {id:13,name:'Clean & Clear Facewash',brand:'J&J',generic:'Salicylic Acid 0.5%',price:550,oldPrice:620,category:'personal',emoji:'🧴',badge:'',tag:'care'},
+  {id:14,name:'Ensure Plus',brand:'Abbott',generic:'Nutritional Supplement',price:1800,oldPrice:2100,category:'vitamins',emoji:'🥛',badge:'sale',tag:'supplements'},
+  {id:15,name:'Creatine Monohydrate',brand:'MuscleTech',generic:'Creatine Monohydrate',price:3200,oldPrice:3800,category:'sports',emoji:'💪',badge:'new',tag:'supplements'},
+  {id:16,name:'Dettol Handwash',brand:'Reckitt',generic:'Chloroxylenol 0.1%',price:185,oldPrice:210,category:'personal',emoji:'🧼',badge:'',tag:'care'},
+  {id:17,name:'Olfen 100mg',brand:'Menarini',generic:'Diclofenac Sodium',price:210,oldPrice:250,category:'pain',emoji:'💊',badge:'sale',tag:'medicines'},
+  {id:18,name:'Lopressor 50mg',brand:'Novartis',generic:'Metoprolol Tartrate',price:320,oldPrice:380,category:'cardiac',emoji:'💊',badge:'',tag:'medicines'},
+  {id:19,name:'BCAA Energy',brand:'Dymatize',generic:'Branched Chain Amino Acids',price:4500,oldPrice:5200,category:'sports',emoji:'⚡',badge:'sale',tag:'supplements'},
+  {id:20,name:'Himalaya Neem Face Pack',brand:'Himalaya',generic:'Neem & Turmeric Extract',price:380,oldPrice:450,category:'personal',emoji:'🌿',badge:'',tag:'care'},
+];
+
+const diseases = [
+  {name:'Diabetes',emoji:'🩸',count:'48 products',sub:['Type 1','Type 2','Pre-Diabetes','Blood Sugar','Insulin']},
+  {name:'Hypertension',emoji:'❤️',count:'36 products',sub:['Blood Pressure','Diuretics','Beta Blockers','ACE Inhibitors']},
+  {name:'Fever & Pain',emoji:'🌡️',count:'52 products',sub:['Fever','Headache','Body Pain','Joint Pain','Migraine']},
+  {name:'Antibiotics',emoji:'🦠',count:'41 products',sub:['Broad Spectrum','Penicillin','Macrolide','Fluoroquinolone']},
+  {name:'Digestive',emoji:'🫃',count:'30 products',sub:['Acidity','Constipation','Diarrhea','IBS','Ulcer']},
+  {name:'Respiratory',emoji:'🫁',count:'38 products',sub:['Asthma','Cough','Cold','Allergies','Bronchitis']},
+  {name:'Eye & ENT',emoji:'👁️',count:'25 products',sub:['Dry Eyes','Ear Infection','Sinusitis','Nasal Drops']},
+  {name:'Mental Health',emoji:'🧠',count:'22 products',sub:['Anxiety','Depression','Sleep','ADHD']},
+  {name:'Skin',emoji:'🧴',count:'44 products',sub:['Acne','Eczema','Fungal','Psoriasis','Rash']},
+  {name:'Vitamins',emoji:'💊',count:'60 products',sub:['Vitamin D','Vitamin C','B-Complex','Zinc','Iron']},
+  {name:'Heart',emoji:'🫀',count:'33 products',sub:['Cholesterol','Anticoagulant','Arrhythmia','Heart Failure']},
+  {name:'Thyroid',emoji:'🦋',count:'18 products',sub:['Hypothyroidism','Hyperthyroidism','Thyroid Supplements']},
+];
+
+const pharmacists = [
+  {name:'Dr. Raza Haider',spec:'Clinical Pharmacist',exp:'8 yrs',rating:'4.9',reviews:'1.2k',online:true,color:'#1a6b4a'},
+  {name:'Dr. Ayesha Khan',spec:'Pharm.D',exp:'6 yrs',rating:'4.8',reviews:'980',online:true,color:'#1976d2'},
+  {name:'Mr. Bilal Ahmed',spec:'Pharmacist',exp:'4 yrs',rating:'4.7',reviews:'640',online:true,color:'#7b2d8b'},
+  {name:'Dr. Sara Malik',spec:'Clinical Pharm.',exp:'10 yrs',rating:'4.9',reviews:'2.1k',online:false,color:'#e65100'},
+];
+
+const labCategories = [
+  {icon:'🩸',name:'Blood Tests',count:'45 tests'},
+  {icon:'🧬',name:'Genetic Tests',count:'12 tests'},
+  {icon:'🦠',name:'Microbiology',count:'28 tests'},
+  {icon:'🫀',name:'Cardiac Panel',count:'18 tests'},
+  {icon:'🍯',name:'Diabetes Panel',count:'10 tests'},
+  {icon:'🧪',name:'Urine Analysis',count:'20 tests'},
+  {icon:'📷',name:'Imaging',count:'35 tests'},
+  {icon:'🔬',name:'Histopathology',count:'22 tests'},
+];
+
+const labTests = [
+  {name:'CBC (Complete Blood Count)',desc:'Checks red/white blood cells, hemoglobin and platelets. Essential for diagnosing anemia and infections.',time:'4-6 hrs',sample:'Blood',price:'Rs. 400',cat:'blood'},
+  {name:'Blood Sugar (Fasting)',desc:'Measures glucose levels to screen and monitor diabetes. Sample taken after 8-12 hours of fasting.',time:'2-4 hrs',sample:'Blood',price:'Rs. 200',cat:'blood'},
+  {name:'Lipid Profile',desc:'Measures cholesterol, HDL, LDL, and triglycerides to assess cardiovascular risk.',time:'6-8 hrs',sample:'Blood',price:'Rs. 600',cat:'cardiac'},
+  {name:'Urine Routine Examination',desc:'Checks for infections, kidney disease and metabolic conditions by analyzing urine composition.',time:'2-3 hrs',sample:'Urine',price:'Rs. 150',cat:'urine'},
+  {name:'Chest X-Ray',desc:'Imaging of lungs and heart to detect infections, tumors or structural abnormalities.',time:'1 hr',sample:'Imaging',price:'Rs. 800',cat:'imaging'},
+  {name:'ECG (Electrocardiogram)',desc:'Records the electrical activity of the heart to detect arrhythmias and heart disease.',time:'Same Day',sample:'Physical',price:'Rs. 500',cat:'cardiac'},
+  {name:'Thyroid Function Tests (TFT)',desc:'Measures TSH, T3 and T4 levels to evaluate thyroid gland function and detect disorders.',time:'6-8 hrs',sample:'Blood',price:'Rs. 1200',cat:'blood'},
+  {name:'HbA1c',desc:'Reflects average blood sugar over 2-3 months. Key test for long-term diabetes management.',time:'4 hrs',sample:'Blood',price:'Rs. 800',cat:'blood'},
+];
+
+const nearbyPharmacies = [
+  {name:'Dow Pharmacy',address:'DUHS, Ojha Campus, Karachi',dist:'0.8 km',open:true,phone:'021-9999277',type:'Hospital Pharmacy',rating:'4.7'},
+  {name:'Al-Shifa Pharmacy',address:'North Karachi Sector 7-B',dist:'1.2 km',open:true,phone:'021-6901234',type:'Chain Pharmacy',rating:'4.5'},
+  {name:'Kausar Medicos',address:'Gulshan-e-Iqbal Block 13D',dist:'2.1 km',open:true,phone:'021-4821567',type:'Independent',rating:'4.8',note:'24/7'},
+  {name:'MedKhana',address:'DHA Phase 6, Karachi',dist:'3.4 km',open:true,phone:'021-5871900',type:'Online+Offline',rating:'4.3'},
+  {name:'City Medical Store',address:'Clifton Block 5, Karachi',dist:'4.2 km',open:false,phone:'021-5836421',type:'Independent',rating:'4.6'},
+  {name:'Fazal Din\'s Pharma',address:'Saddar, Karachi',dist:'5.0 km',open:true,phone:'021-3256789',type:'Chain Pharmacy',rating:'4.4'},
+];
+
+const brands = [
+  {name:'GSK',color:'#e53935',emoji:'💊',products:145,origin:'UK'},
+  {name:'Abbott',color:'#1976d2',emoji:'🔬',products:98,origin:'USA'},
+  {name:'Pfizer',color:'#1a6b4a',emoji:'💉',products:112,origin:'USA'},
+  {name:'Novartis',color:'#f57c00',emoji:'🧬',products:87,origin:'Switzerland'},
+  {name:'Getz Pharma',color:'#7b2d8b',emoji:'🏭',products:203,origin:'Pakistan'},
+  {name:'Sami Pharma',color:'#1a6b4a',emoji:'🌿',products:156,origin:'Pakistan'},
+  {name:'Brookes',color:'#0288d1',emoji:'🔬',products:89,origin:'Pakistan'},
+  {name:'ICI Pakistan',color:'#455a64',emoji:'⚗️',products:134,origin:'Pakistan'},
+  {name:'Himalaya',color:'#558b2f',emoji:'🌄',products:67,origin:'India'},
+  {name:'Cetaphil',color:'#0097a7',emoji:'🧴',products:24,origin:'USA'},
+  {name:'Optimum Nutrition',color:'#e65100',emoji:'💪',products:38,origin:'USA'},
+  {name:'MuscleTech',color:'#1a237e',emoji:'🏋️',products:42,origin:'Canada'},
+];
+
+const careCats = [
+  {name:'Skin Care',icon:'🧴',count:'120 products',bg:'#fce4ec'},
+  {name:'Hair Care',icon:'💇',count:'85 products',bg:'#e8f5e9'},
+  {name:'Oral Care',icon:'🦷',count:'45 products',bg:'#e3f2fd'},
+  {name:'Baby Care',icon:'👶',count:'67 products',bg:'#fff8e1'},
+  {name:'Eye Care',icon:'👁️',count:'38 products',bg:'#f3e5f5'},
+  {name:'Mom & Maternity',icon:'🤱',count:'52 products',bg:'#fbe9e7'},
+];
+
+const sportsCategories = ['All','Protein','Pre-Workout','Creatine','BCAAs','Weight Gainers','Fat Burners','Vitamins','Equipment'];
+
+const suggestionsDb = ['Panadol','Augmentin','Brufen','Metformin','Amlodipine','Zyrtec','Vitamin D','Omega-3','Paracetamol','Ibuprofen','Omeprazole','Amoxicillin','Lisinopril','Atorvastatin','CBC Test','Blood Sugar Test','Lipid Profile','Protein Powder','Creatine'];
+
+/* ─────────────── STATE ─────────────── */
+let cart = [
+  {id:1,name:'Panadol Extra',pharmacy:'Dow',price:195,qty:2,emoji:'💊'},
+  {id:2,name:'Augmentin 625mg',pharmacy:'Al-Shifa',price:485,qty:1,emoji:'💊'},
+];
+let currentPage = 'home';
+
+/* ─────────────── INIT ─────────────── */
+window.onload = function(){
+  animateCounters();
+  renderHomeProducts();
+  renderHomeDiseases();
+  renderHomeCare();
+  renderPharmacists();
+  renderNearby();
+  renderLabCats();
+  renderLabTests();
+  renderDiseaseGrid();
+  renderMeds();
+  renderPersonalCats();
+  renderPersonalProducts();
+  renderSports();
+  renderBrands();
+  renderBestsellers();
+  renderCompare();
+  updateCart();
+};
+
+/* ─── COUNTER ─── */
+function animateCounters(){
+  const targets = [{id:'cnt1',target:50000,suffix:'+'},{id:'cnt2',target:200,suffix:'+'},{id:'cnt3',target:500000,suffix:'+'},{id:'cnt4',target:50,suffix:'+'}];
+  targets.forEach(t=>{
+    let n=0;const el=document.getElementById(t.id);
+    const step=Math.ceil(t.target/60);
+    const iv=setInterval(()=>{n=Math.min(n+step,t.target);el.textContent=n.toLocaleString()+t.suffix;if(n>=t.target)clearInterval(iv);},30);
+  });
+}
+
+/* ─── PAGE NAVIGATION ─── */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg=document.getElementById('page-'+id);
+  if(pg){pg.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  currentPage=id;
+}
+
+/* ─── PRODUCT CARD ─── */
+function productCard(p){
+  const badge = p.badge==='sale'?`<span class="product-badge">SALE</span>`:p.badge==='new'?`<span class="product-badge new">NEW</span>`:p.badge==='rx'?`<span class="product-badge rx">Rx</span>`:'';
+  const bestsellerBadge = p.id<=8?`<span class="bestseller-badge">⭐ Best Seller</span>`:'';
+  const discount = p.oldPrice?Math.round((1-p.price/p.oldPrice)*100):'';
+  return `<div class="product-card">
+    <div class="product-img">${badge}${bestsellerBadge}<span style="font-size:48px">${p.emoji}</span></div>
+    <div class="product-info">
+      <div class="product-brand">${p.brand}</div>
+      <div class="product-name">${p.name}</div>
+      <div class="product-generic">${p.generic}</div>
+      <div class="product-price">
+        <span class="price-current">Rs. ${p.price.toLocaleString()}</span>
+        ${p.oldPrice?`<span class="price-old">Rs. ${p.oldPrice.toLocaleString()}</span><span class="saving-badge">${discount}% OFF</span>`:''}
+      </div>
+      <div class="product-actions">
+        <button class="btn-add" onclick="addToCart('${p.name}','PharmaPlus','${p.price}')"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+        <button class="btn-wish" onclick="showToast('Added to wishlist ❤️','success')"><i class="fas fa-heart"></i></button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderHomeProducts(){document.getElementById('homeProducts').innerHTML=products.slice(0,8).map(productCard).join('');}
+function renderMeds(cat='all'){
+  const f=cat==='all'?products:products.filter(p=>p.category===cat);
+  document.getElementById('medsGrid').innerHTML=f.map(productCard).join('');
+  document.getElementById('medCount').textContent=f.length;
+}
+function filterMeds(cat,el){
+  document.querySelectorAll('.cat-sidebar a').forEach(a=>a.classList.remove('active'));
+  el.classList.add('active');renderMeds(cat);
+}
+function sortMeds(){}
+function renderPersonalProducts(){document.getElementById('personalProducts').innerHTML=products.filter(p=>p.tag==='care').map(productCard).join('');}
+function renderSports(cat='all'){
+  const f=cat==='all'?products.filter(p=>p.tag==='supplements'):products.filter(p=>p.category==='sports');
+  document.getElementById('sportsGrid').innerHTML=f.map(productCard).join('');
+}
+function filterSports(cat){
+  document.querySelectorAll('#sportsCatBtns button').forEach(b=>b.classList.remove('active'));
+  renderSports(cat);
+}
+function renderBestsellers(cat='all'){
+  const f=cat==='all'?products.slice(0,16):products.filter(p=>p.tag===cat).slice(0,12);
+  document.getElementById('bsGrid').innerHTML=f.map(productCard).join('');
+}
+function filterBS(cat,el){
+  document.querySelectorAll('#bsFilterBtns button').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');renderBestsellers(cat);
+}
+
+/* ─── SPORTS CATEGORY BUTTONS ─── */
+function renderSportsCats(){
+  document.getElementById('sportsCatBtns').innerHTML=sportsCategories.map((c,i)=>`<button class="sports-cat-btn ${i===0?'active':''}" onclick="filterSports('${c.toLowerCase()}');this.parentNode.querySelectorAll('button').forEach(b=>b.classList.remove('active'));this.classList.add('active')">${c}</button>`).join('');
+}
+renderSportsCats();
+
+/* ─── DISEASE ─── */
+function renderDiseaseGrid(){
+  document.getElementById('diseaseCats').innerHTML=diseases.map((d,i)=>`<div class="disease-card" onclick="selectDisease(${i},this)"><div class="disease-emoji">${d.emoji}</div><h4>${d.name}</h4><p>${d.count}</p></div>`).join('');
+}
+function renderHomeDiseases(){
+  document.getElementById('homeDiseases').innerHTML=diseases.slice(0,8).map((d,i)=>`<div class="disease-card" onclick="showPage('disease');setTimeout(()=>selectDisease(${i},null),300)"><div class="disease-emoji">${d.emoji}</div><h4>${d.name}</h4><p>${d.count}</p></div>`).join('');
+}
+function selectDisease(i,el){
+  document.querySelectorAll('.disease-card').forEach(c=>c.classList.remove('selected'));
+  if(el)el.classList.add('selected');
+  const d=diseases[i];
+  const sub=document.getElementById('subcatList');
+  sub.innerHTML=d.sub.map((s,j)=>`<button class="subcat-btn ${j===0?'active':''}" onclick="this.parentNode.querySelectorAll('button').forEach(b=>b.classList.remove('active'));this.classList.add('active')">${s}</button>`).join('');
+  sub.classList.add('show');
+  const rel=products.slice(0,4+Math.floor(Math.random()*4));
+  document.getElementById('diseaseProducts').innerHTML=rel.map(productCard).join('');
+}
+
+/* ─── PERSONAL CARE ─── */
+function renderPersonalCats(){
+  const cats=document.getElementById('personalCats');
+  if(cats)cats.innerHTML=careCats.map(c=>`<div class="care-cat" style="background:${c.bg}" onclick="showToast('Loading ${c.name}...','success')"><div class="care-cat-bg">${c.icon}</div><div class="care-cat-overlay"></div><div class="care-cat-text"><h4>${c.name}</h4><p>${c.count}</p></div></div>`).join('');
+  const home=document.getElementById('homeCare');
+  if(home)home.innerHTML=careCats.map(c=>`<div class="care-cat" style="background:${c.bg}" onclick="showPage('personal')"><div class="care-cat-bg">${c.icon}</div><div class="care-cat-overlay"></div><div class="care-cat-text"><h4>${c.name}</h4><p>${c.count}</p></div></div>`).join('');
+}
+
+/* ─── BRANDS ─── */
+function renderBrands(){
+  document.getElementById('brandsGrid').innerHTML=brands.map(b=>`<div class="brand-card" onclick="showToast('Loading ${b.name} products...','success')"><div class="brand-logo-placeholder" style="background:${b.color}">${b.emoji}</div><h4>${b.name}</h4><p>${b.products} products • ${b.origin}</p></div>`).join('');
+  document.getElementById('brandProducts').innerHTML=products.slice(0,8).map(productCard).join('');
+}
+
+/* ─── PHARMACISTS ─── */
+function renderPharmacists(){
+  document.getElementById('pharmacistList').innerHTML=pharmacists.map(p=>`<div class="pharmacist-card">
+    <div class="pharma-avatar" style="background:${p.color}">${p.name.split(' ').map(n=>n[0]).join('')}</div>
+    <h4 style="font-size:14px;font-weight:700;margin-bottom:2px">${p.name}</h4>
+    <p style="font-size:12px;color:var(--text-muted);margin-bottom:6px">${p.spec} • ${p.exp}</p>
+    <p style="font-size:12px;margin-bottom:10px"><span class="${p.online?'online-dot':''}" style="${!p.online?'display:inline-block;width:8px;height:8px;border-radius:50%;background:#ccc;margin-right:4px':''}"></span>${p.online?'Online Now':'Offline'}</p>
+    <div class="rating" style="margin-bottom:10px">★★★★★ ${p.rating} (${p.reviews} reviews)</div>
+    <button class="btn-add" style="font-size:12px" onclick="${p.online?`startChat()`:`showToast('${p.name} is currently offline. Next available in 2 hours.','error')`}">${p.online?'Consult Now':'Schedule'}</button>
+  </div>`).join('');
+}
+
+/* ─── NEARBY ─── */
+function renderNearby(){
+  document.getElementById('nearbyList').innerHTML=nearbyPharmacies.map(p=>`<div class="nearby-card">
+    <div class="nearby-icon"><i class="fas fa-plus"></i></div>
+    <div class="nearby-info">
+      <h4>${p.name} <span style="font-size:11px;color:var(--text-muted)">${p.dist}</span></h4>
+      <p>${p.address}</p>
+      <div class="nearby-tags">
+        <span class="tag ${p.open?'open':'closed'}">${p.open?'Open':'Closed'}</span>
+        <span class="tag">${p.type}</span>
+        <span class="tag">⭐ ${p.rating}</span>
+        ${p.note?`<span class="tag" style="background:#e3f0fd;color:var(--info)">${p.note}</span>`:''}
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn-order-sm" style="font-size:11px" onclick="showToast('Calling ${p.name}...','success')"><i class="fas fa-phone"></i> Call</button>
+        <button class="btn-order-sm" style="font-size:11px;background:var(--info)" onclick="showToast('Opening directions...','success')"><i class="fas fa-directions"></i> Directions</button>
+        <button class="btn-order-sm" style="font-size:11px;background:#1a1a2e" onclick="showPage('medicines')"><i class="fas fa-pills"></i> Order</button>
+      </div>
+    </div>
+  </div>`).join('');
+}
+
+/* ─── LAB CATEGORIES ─── */
+function renderLabCats(){
+  document.getElementById('labCats').innerHTML=labCategories.map(c=>`<div class="lab-cat" onclick="filterLabTests('${c.name.toLowerCase().split(' ')[0]}')"><div class="lab-cat-icon">${c.icon}</div><h4>${c.name}</h4><p>${c.count}</p></div>`).join('');
+}
+function addLabCategory(){
+  const name=document.getElementById('newCatName').value;
+  const icon=document.getElementById('newCatIcon').value||'🧪';
+  const desc=document.getElementById('newCatDesc').value;
+  const count=document.getElementById('newCatCount').value;
+  if(!name){showToast('Please enter a category name','error');return;}
+  labCategories.push({icon,name,count:`${count||0} tests`});
+  renderLabCats();
+  closeModal('addLabCat');
+  showToast(`"${name}" category added successfully!`,'success');
+}
+function renderLabTests(filter='all'){
+  const f=filter==='all'?labTests:labTests.filter(t=>t.cat===filter);
+  document.getElementById('labTestsGrid').innerHTML=f.map(t=>`<div class="lab-test-card">
+    <h4>${t.name}</h4>
+    <p>${t.desc}</p>
+    <div class="lab-details">
+      <span><i class="fas fa-clock"></i> ${t.time}</span>
+      <span><i class="fas fa-vial"></i> ${t.sample}</span>
+      <span><i class="fas fa-tag"></i> From ${t.price}</span>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="lab-compare-btn" onclick="showPage('lab')">Compare Prices</button>
+      <button class="btn-order-sm" style="font-size:12px;padding:9px 16px" onclick="showToast('Booking ${t.name}...','success')">Book Now</button>
+    </div>
+  </div>`).join('');
+}
+function filterLabTests(cat,el){
+  document.querySelectorAll('.subcat-btn').forEach(b=>b.classList.remove('active'));
+  if(el)el.classList.add('active');
+  renderLabTests(cat);
+}
+
+/* ─── PRICE COMPARE ─── */
+function renderCompare(){
+  const meds=[
+    {name:'Panadol 500mg',generic:'Paracetamol 500mg',pharmacies:[{n:'Dow Pharmacy',c:'#1a6b4a',p:165,s:true,d:'2-4 hrs',r:4.7},{n:'Al-Shifa',c:'#1976d2',p:178,s:true,d:'3-5 hrs',r:4.5},{n:'Kausar Medicos',c:'#7b2d8b',p:185,s:true,d:'1-3 hrs',r:4.8},{n:'MedKhana',c:'#e53935',p:192,s:false,d:'Next Day',r:4.3}]},
+    {name:'Augmentin 625mg',generic:'Amoxicillin + Clavulanate',pharmacies:[{n:'Dow Pharmacy',c:'#1a6b4a',p:485,s:true,d:'2-4 hrs',r:4.7},{n:'Al-Shifa',c:'#1976d2',p:495,s:true,d:'3-5 hrs',r:4.5},{n:'Kausar Medicos',c:'#7b2d8b',p:510,s:false,d:'Next Day',r:4.8},{n:'MedKhana',c:'#e53935',p:520,s:true,d:'2-3 hrs',r:4.3}]},
+    {name:'Nexium 20mg',generic:'Esomeprazole 20mg',pharmacies:[{n:'Dow Pharmacy',c:'#1a6b4a',p:850,s:true,d:'2-4 hrs',r:4.7},{n:'Al-Shifa',c:'#1976d2',p:890,s:true,d:'3-5 hrs',r:4.5},{n:'Kausar Medicos',c:'#7b2d8b',p:920,s:true,d:'1-3 hrs',r:4.8},{n:'MedKhana',c:'#e53935',p:880,s:false,d:'Next Day',r:4.3}]},
+  ];
+  document.getElementById('compareResults').innerHTML=meds.map(m=>`
+    <div class="compare-section" style="margin-bottom:24px">
+      <div class="compare-header"><i class="fas fa-pills" style="font-size:18px"></i><h3>${m.name}</h3><span class="pill pill-green" style="margin-left:auto">${m.generic}</span></div>
+      <table class="compare-table">
+        <thead><tr><th>Pharmacy</th><th>Price</th><th>Stock</th><th>Delivery</th><th>Rating</th><th>Order</th></tr></thead>
+        <tbody>${m.pharmacies.map((p,i)=>`<tr>
+          <td><div class="pharmacy-name"><div class="pharm-logo" style="background:${p.c}">${p.n.substring(0,2).toUpperCase()}</div>${p.n}</div></td>
+          <td><span class="price-tag ${i===0?'price-best':''}">Rs. ${p.p.toLocaleString()} ${i===0?'<span class="saving-badge">BEST</span>':''}</span></td>
+          <td><span class="stock-badge ${p.s?'in-stock':'out-stock'}">${p.s?'In Stock':'Limited'}</span></td>
+          <td>${p.d}</td>
+          <td>⭐ ${p.r}</td>
+          <td><button class="btn-order-sm" onclick="addToCart('${m.name}','${p.n}','${p.p}')">Order</button></td>
+        </tr>`).join('')}</tbody>
+      </table>
+    </div>`).join('');
+}
+function searchCompare(){showToast('Searching medicines...','success');setTimeout(()=>showToast('Results updated!','success'),800);}
+
+/* ─── RX SCANNER ─── */
+function scanPrescription(inp){
+  if(!inp.files.length)return;
+  const result=document.getElementById('rxResult');
+  const list=document.getElementById('rxMedList');
+  showToast('Scanning prescription with AI...','success');
+  setTimeout(()=>{
+    const meds=[
+      {name:'Panadol 500mg',dosage:'2 tablets 3x/day',qty:'1 Strip',note:'After meals'},
+      {name:'Augmentin 625mg',dosage:'1 tablet 2x/day',qty:'10 Tablets',note:'7-day course'},
+      {name:'Zyrtec 10mg',dosage:'1 tablet at night',qty:'10 Tablets',note:'Before bed'},
+    ];
+    list.innerHTML=meds.map(m=>`<div class="rx-med-item">
+      <div><p style="font-weight:700;font-size:14px">${m.name}</p><p style="font-size:12px;color:var(--text-muted)">${m.dosage} • ${m.qty} • ${m.note}</p></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span class="pill pill-green">Found</span>
+        <button class="btn-order-sm" style="font-size:11px" onclick="addToCart('${m.name}','PharmaPlus','195')">Add</button>
+      </div>
+    </div>`).join('');
+    result.classList.add('show');
+    showToast('✅ 3 medicines identified from prescription!','success');
+  },2000);
+}
+function addAllRxToCart(){cart.push({id:Date.now(),name:'Rx Bundle',pharmacy:'PharmaPlus',price:875,qty:1,emoji:'📋'});updateCart();openCart();showToast('All prescription medicines added to cart!','success');}
+
+/* ─── VIDEO CALL ─── */
+function startVideoCall(){
+  document.getElementById('videoCallUI').style.display='block';
+  document.getElementById('chatUI').style.display='none';
+  showPage('consult');
+  let s=167;
+  const iv=setInterval(()=>{s--;const m=Math.floor(s/60).toString().padStart(2,'0'),sc=(s%60).toString().padStart(2,'0');const el=document.getElementById('waitTimer');if(el)el.textContent=`${m}:${sc}`;if(s<=0){clearInterval(iv);if(el)el.parentElement.parentElement.innerHTML='<p style="font-size:20px;font-weight:700">📹 Connected to Dr. Raza Haider</p><p style="opacity:.7;margin-top:8px">Video consultation in progress...</p>';}},1000);
+}
+function endCall(){document.getElementById('videoCallUI').style.display='none';showToast('Call ended. Thank you!','success');}
+function toggleMic(btn){btn.innerHTML=btn.innerHTML.includes('fa-microphone-slash')?'<i class="fas fa-microphone"></i>':'<i class="fas fa-microphone-slash"></i>';}
+function toggleCam(btn){btn.innerHTML=btn.innerHTML.includes('fa-video-slash')?'<i class="fas fa-video"></i>':'<i class="fas fa-video-slash"></i>';}
+
+/* ─── CHAT ─── */
+function startChat(){
+  document.getElementById('chatUI').style.display='block';
+  document.getElementById('videoCallUI').style.display='none';
+  showPage('consult');
+}
+const botReplies = [
+  "Great question! Based on the information you've provided, I'd recommend consulting with your doctor as well. Panadol (Paracetamol) is generally safe for mild pain and fever at the recommended dosage.",
+  "The standard dose of Paracetamol for adults is 500mg-1000mg every 4-6 hours, not exceeding 4g/day. Are you on any other medications?",
+  "Drug interactions are important to check. Can you share all the medicines you're currently taking? I'll check for any contraindications.",
+  "Yes, that medicine is available at Dow Pharmacy at Rs. 165 — it's the best price right now! Would you like me to add it to your cart?",
+  "For your condition, I'd suggest discussing this with your physician. However, I can help you find the medicines at the best prices in Karachi.",
+];
+let botIdx=0;
+function sendMsg(){
+  const inp=document.getElementById('chatIn');
+  const msg=inp.value.trim();
+  if(!msg)return;
+  const msgs=document.getElementById('chatMessages');
+  msgs.innerHTML+=`<div class="msg user">${msg}</div>`;
+  inp.value='';
+  msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(()=>{
+    msgs.innerHTML+=`<div class="msg bot">${botReplies[botIdx%botReplies.length]}</div>`;
+    botIdx++;msgs.scrollTop=msgs.scrollHeight;
+  },800);
+}
+
+/* ─── CART ─── */
+function addToCart(name,pharmacy,price){
+  cart.push({id:Date.now(),name,pharmacy,price:parseInt(price),qty:1,emoji:'💊'});
+  updateCart();showToast(`${name} added to cart! 🛒`,'success');
+}
+function updateCart(){
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  document.getElementById('cartBadge').textContent=cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cartTotal').textContent=`Rs. ${total.toLocaleString()}`;
+  document.getElementById('cartItems').innerHTML=cart.length?cart.map((item,i)=>`<div class="cart-item">
+    <div class="cart-item-img">${item.emoji}</div>
+    <div class="cart-item-info">
+      <h4>${item.name}</h4>
+      <p style="color:var(--text-muted)">${item.pharmacy} • Rs. ${item.price.toLocaleString()}</p>
+      <div class="qty-ctrl">
+        <button class="qty-btn" onclick="changeQty(${i},-1)">−</button>
+        <span style="font-size:14px;font-weight:600">${item.qty}</span>
+        <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
+        <button style="margin-left:auto;background:none;border:none;color:var(--danger);cursor:pointer;font-size:14px" onclick="removeItem(${i})"><i class="fas fa-trash"></i></button>
+      </div>
+    </div>
+  </div>`).join(''):`<div style="text-align:center;padding:40px;color:var(--text-muted)"><i class="fas fa-shopping-cart" style="font-size:48px;margin-bottom:16px;opacity:.3"></i><p>Your cart is empty</p><button class="btn-add" style="margin:16px auto 0;width:auto;padding:10px 24px" onclick="closeCart();showPage('medicines')">Shop Now</button></div>`;
+}
+function changeQty(i,d){
+  cart[i].qty=Math.max(1,cart[i].qty+d);
+  updateCart();
+}
+function removeItem(i){
+  cart.splice(i,1);updateCart();showToast('Item removed','success');
+}
+function openCart(){document.getElementById('cartOverlay').classList.add('open');}
+function closeCart(){document.getElementById('cartOverlay').classList.remove('open');}
+function closeCartOnBg(e){if(e.target.id==='cartOverlay')closeCart();}
+function checkout(){closeCart();openModal('login');}
+
+/* ─── ORDER TRACKING ─── */
+function trackOrder(){
+  document.getElementById('orderTimeline').classList.add('show');
+  showToast('Order found! Showing real-time status.','success');
+}
+
+/* ─── LOCATION ─── */
+function getLocation(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(
+      ()=>showToast('📍 Location detected! Showing nearby pharmacies.','success'),
+      ()=>showToast('Location access denied. Showing Karachi pharmacies.','error')
+    );
+  }else showToast('Geolocation not supported. Showing Karachi.','error');
+}
+
+/* ─── SEARCH SUGGESTIONS ─── */
+function showSuggestions(val){
+  const box=document.getElementById('searchSugg');
+  if(val.length<2){box.classList.remove('show');return;}
+  const matches=suggestionsDb.filter(s=>s.toLowerCase().includes(val.toLowerCase())).slice(0,6);
+  if(!matches.length){box.classList.remove('show');return;}
+  box.innerHTML=matches.map(m=>`<div class="sug-item" onmousedown="selectSugg('${m}')"><i class="fas fa-search"></i> ${m}</div>`).join('');
+  box.classList.add('show');
+}
+function hideSuggestions(){setTimeout(()=>document.getElementById('searchSugg').classList.remove('show'),200);}
+function selectSugg(val){document.getElementById('mainSearch').value=val;showToast(`Searching for "${val}"...`,'success');}
+
+/* ─── MODALS ─── */
+function openModal(id){document.getElementById('modal-'+id).classList.add('open');}
+function closeModal(id){document.getElementById('modal-'+id).classList.remove('open');}
+function closeModalOnBg(e,id){if(e.target===document.getElementById('modal-'+id))closeModal(id);}
+
+/* ─── TOAST ─── */
+function showToast(msg,type='success'){
+  const c=document.getElementById('toastContainer');
+  const t=document.createElement('div');
+  t.className=`toast ${type}`;
+  t.innerHTML=`<i class="fas fa-${type==='success'?'check-circle':'exclamation-circle'}"></i> ${msg}`;
+  c.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateY(20px)';t.style.transition='.3s';setTimeout(()=>t.remove(),300);},3000);
+}
+
+/* ─── LANGUAGE ─── */
+function setLang(lang,btn){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.body.classList.toggle('lang-ur',lang==='ur');
+  showToast(lang==='ur'?'زبان اردو میں تبدیل ہو گئی':'Language changed to English','success');
+}
+</script>
+</body>
+</html>
