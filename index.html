@@ -1790,5 +1790,100 @@ function setLang(lang,btn){
   showToast(lang==='ur'?'زبان اردو میں تبدیل ہو گئی':'Language changed to English','success');
 }
 </script>
+const API_URL = 'http://localhost:5000/api';
+
+async function loadMedicines() {
+  try {
+    const response = await fetch(`${API_URL}/medicines`);
+    const data = await response.json();
+    if (data.success) {
+      displayMedicines(data.data);
+    }
+  } catch (error) {
+    console.log('Using local data...');
+  }
+}
+
+function displayMedicines(medicines) {
+  const grid = document.querySelector('.product-grid');
+  if (!grid) return;
+  
+  grid.innerHTML = medicines.map(med => `
+    <div class="product-card">
+      <div class="product-img">💊</div>
+      <div class="product-info">
+        <div class="product-brand">${med.brand}</div>
+        <div class="product-name">${med.name}</div>
+        <div class="product-generic">${med.generic}</div>
+        <div class="product-price">
+          <span class="price-current">Rs. ${med.prices.dow}</span>
+          <span style="color:var(--text-muted);font-size:12px">⭐ ${med.rating}</span>
+        </div>
+        <div class="product-actions">
+          <button class="btn-add" onclick="addToCart('${med.id}', 'Dow', 1)">Add to Cart</button>
+          <button class="btn-wish" onclick="comparePrice('${med.id}')">Compare</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function addToCart(medicineId, pharmacy, quantity) {
+  try {
+    const response = await fetch(`${API_URL}/cart/add`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ medicineId, pharmacy, quantity })
+    });
+    const data = await response.json();
+    if (data.success) {
+      showToast('✓ Added to cart', 'success');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+async function comparePrice(medicineId) {
+  try {
+    const response = await fetch(`${API_URL}/price-comparison/${medicineId}`);
+    const data = await response.json();
+    if (data.success) {
+      alert(`${data.medicine}\n\nDow: Rs. ${data.prices[0].price}\n${data.prices[1].pharmacy}: Rs. ${data.prices[1].price}\n${data.prices[2].pharmacy}: Rs. ${data.prices[2].price}`);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+async function trackOrder() {
+  const orderId = prompt('Enter Order ID:');
+  if (!orderId) return;
+  
+  try {
+    const response = await fetch(`${API_URL}/track/${orderId}`);
+    const data = await response.json();
+    if (data.success) {
+      console.log('Order Timeline:', data.timeline);
+      showToast('✓ Order found! Check console', 'success');
+    }
+  } catch (error) {
+    showToast('Order not found', 'error');
+  }
+}
+
+function showToast(msg, type) {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.textContent = msg;
+  toast.style.cssText = `position:fixed;bottom:20px;right:20px;padding:15px 20px;border-radius:8px;color:#fff;background:${type === 'success' ? '#4caf50' : '#f44336'};z-index:9999`;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+// Load medicines on page load
+document.addEventListener('DOMContentLoaded', loadMedicines);
+
+  
 </body>
 </html>
